@@ -1,0 +1,21 @@
+.footer
+{
+    min-height: 5vh;
+    display:flex;
+    flex-direction: column;
+
+}
+
+.footer ul{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer ul li
+{
+
+    padding:10px
+}

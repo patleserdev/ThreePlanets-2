@@ -1,0 +1,78 @@
+.container
+{
+  background-color: black;
+  height: 100vh;
+  width: 100%;
+  position:relative;
+}
+
+.infoBox {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 30%;
+  background: rgba(255, 255, 255, 0.5);
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 5;
+  transition:1s all;
+  box-shadow: 1px 1px 10px  white;
+}
+
+.infoBox p{
+
+  padding:1rem;
+}
+
+.IconContainer
+{
+  position:absolute;
+  right: 0;
+  margin: 1rem;
+  bottom:0;
+  width: 150px;
+  height: 150px;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 5;
+  border:1px solid white;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+  display: flex;
+}
+
+.IconContainer > div
+{
+  display: block;
+  width: 50%;
+  height: 50%;
+}
+
+.IconContainer > div > svg
+{
+padding:0.5rem
+}
+
+
+
+.MiniMap
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+  width: 150px;
+  height: 150px;
+  background-color: black;
+  border-radius: 10px;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  z-index: 100
+}
