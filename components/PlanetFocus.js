@@ -1,4 +1,4 @@
-import planets from "../planets.js"
+import planets from "@/datas/planets.js"
 export default function PlanetFocus({setFocus}){
 
     return (

@@ -6,10 +6,10 @@ import Planet from "./Planet";
 import Sun from "./Sun";
 import { useState,useEffect,useRef } from "react";
 import styles from "@/styles/display.module.css"
-import planets from '../planets.js'
+import planets from '@/datas/planets.js'
 import MovingLight from './MovingLight.js'
 import StarDome from './StarDome.js'
-import Constellations from './Constellation.js'
+import Constellations from '@/datas/Constellation.js'
 import { PerspectiveCamera } from '@react-three/drei';
 import { useThree } from "@react-three/fiber";
 import { Vector3 } from "three";
