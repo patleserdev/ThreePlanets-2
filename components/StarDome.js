@@ -8,7 +8,7 @@ export default function StarDome() {
   return (
     <mesh>
       {/* Créer une sphère inversée avec un rayon plus petit */}
-      <sphereGeometry args={[1000, 256 , 256]} />
+      <sphereGeometry args={[6000, 256 , 256]} />
       {/* Utiliser meshBasicMaterial avec la texture des étoiles et inverser la sphère (side: 2) */}
       <meshBasicMaterial map={starTexture} side={2} />
     </mesh>

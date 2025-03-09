@@ -1,92 +1,645 @@
 [
   {
     "name": "Orion",
+    "infos": "Orion est l'une des constellations les plus reconnaissables, dominée par les étoiles Rigel et Betelgeuse.",
+    "main_star": "Betelgeuse",
+    "average_magnitude": 0.5,
     "stars": [
-      { "id": 1, "x": 10, "y": 50, "z": -200 },
-      { "id": 2, "x": -30, "y": 60, "z": -190 },
-      { "id": 3, "x": 5, "y": 30, "z": -210 }
+      { "id": 1, "x": 400, "y": 100, "z": 4700 },
+      { "id": 2, "x": -350, "y": 200, "z": 4600 },
+      { "id": 3, "x": 250, "y": 150, "z": 4900 },
+      { "id": 4, "x": 300, "y": 50, "z": 4400, "name": "Rigel" },
+      { "id": 5, "x": -220, "y": 80, "z": 4850, "name": "Bellatrix" },
+      { "id": 6, "x": 150, "y": 100, "z": 4200, "name": "Alnilam" },
+      { "id": 7, "x": -100, "y": 250, "z": 4700, "name": "Mintaka" },
+      { "id": 8, "x": 200, "y": 300, "z": 4550, "name": "Saiph" }
     ],
-    "connections": [[1, 2], [2, 3]]
+    "connections": [
+      [1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8]
+    ],
+    "cameraPosition": {
+      "x": 2000,
+      "y": 1000,
+      "z": 4500
+    },
+    "lookAt": {
+      "x": 2000,
+      "y": 1000,
+      "z": 4000
+    }
   },
   {
     "name": "Grande Ourse",
+    "infos": "Cette constellation est célèbre pour contenir l'astérisme de la Grande Casserole, utile pour trouver l'Étoile Polaire.",
+    "main_star": "Dubhe",
+    "average_magnitude": 2.0,
     "stars": [
-      { "id": 4, "x": 50, "y": 80, "z": -300 },
-      { "id": 5, "x": 40, "y": 70, "z": -290 },
-      { "id": 6, "x": 60, "y": 90, "z": -310 }
+      { "id": 4, "x": 600, "y": -300, "z": 4900 },
+      { "id": 5, "x": 500, "y": -200, "z": 4600 },
+      { "id": 6, "x": 700, "y": -400, "z": 5000 }
     ],
-    "connections": [[4, 5], [5, 6]]
+    "connections": [[4, 5], [5, 6]],
+    "cameraPosition": {
+      "x": 1800,
+      "y": -2500,
+      "z": 5000
+    },
+    "lookAt": {
+      "x": 1800,
+      "y": -2500,
+      "z": 4500
+    }
   },
   {
     "name": "Cassiopeia",
+    "infos": "Cassiopeia est une constellation en forme de W, visible toute l'année dans l'hémisphère nord.",
+    "main_star": "Schedar",
+    "average_magnitude": 2.3,
     "stars": [
-      { "id": 7, "x": 100, "y": 120, "z": -400 },
-      { "id": 8, "x": 110, "y": 130, "z": -420 },
-      { "id": 9, "x": 120, "y": 110, "z": -410 }
+      { "id": 7, "x": 750, "y": 200, "z": 4600 },
+      { "id": 8, "x": 800, "y": 250, "z": 4850 },
+      { "id": 9, "x": 720, "y": 150, "z": 4700 }
     ],
-    "connections": [[7, 8], [8, 9]]
+    "connections": [[7, 8], [8, 9]],
+    "cameraPosition": {
+      "x": 3500,
+      "y": 1500,
+      "z": 4500
+    },
+    "lookAt": {
+      "x": 3500,
+      "y": 1500,
+      "z": 4200
+    }
   },
   {
     "name": "Lyra",
+    "infos": "Lyra est célèbre pour son étoile brillante Véga, l'une des plus lumineuses du ciel.",
+    "main_star": "Véga",
+    "average_magnitude": 0.0,
     "stars": [
-      { "id": 10, "x": 150, "y": 200, "z": -500 },
-      { "id": 11, "x": 160, "y": 210, "z": -510 },
-      { "id": 12, "x": 140, "y": 220, "z": -490 }
+      { "id": 10, "x": 850, "y": 400, "z": 4700 },
+      { "id": 11, "x": 900, "y": 500, "z": 4900 },
+      { "id": 12, "x": 820, "y": 300, "z": 4500 }
     ],
-    "connections": [[10, 11], [11, 12]]
+    "connections": [[10, 11], [11, 12]],
+    "cameraPosition": {
+      "x": 2500,
+      "y": 3000,
+      "z": 4700
+    },
+    "lookAt": {
+      "x": 2500,
+      "y": 3000,
+      "z": 4300
+    }
   },
   {
     "name": "Andromeda",
+    "infos": "Andromeda abrite la galaxie d'Andromède, la plus grande galaxie proche de la Voie lactée.",
+    "main_star": "Alpheratz",
+    "average_magnitude": 2.1,
     "stars": [
-      { "id": 13, "x": 200, "y": 250, "z": -600 },
-      { "id": 14, "x": 220, "y": 260, "z": -610 },
-      { "id": 15, "x": 210, "y": 240, "z": -620 }
+      { "id": 13, "x": 1000, "y": 100, "z": 4800 },
+      { "id": 14, "x": 1100, "y": 200, "z": 4950 },
+      { "id": 15, "x": 950, "y": 50, "z": 5000 }
     ],
-    "connections": [[13, 14], [14, 15]]
+    "connections": [[13, 14], [14, 15]],
+    "cameraPosition": {
+      "x": 4300,
+      "y": 1000,
+      "z": 5100
+    },
+    "lookAt": {
+      "x": 4300,
+      "y": 1000,
+      "z": 4800
+    }
   },
   {
     "name": "Scorpius",
+    "infos": "Cette constellation est célèbre pour son étoile géante rouge Antarès.",
+    "main_star": "Antarès",
+    "average_magnitude": 1.1,
     "stars": [
-      { "id": 16, "x": -150, "y": -200, "z": 100 },
-      { "id": 17, "x": -160, "y": -190, "z": 110 },
-      { "id": 18, "x": -140, "y": -180, "z": 90 }
+      { "id": 16, "x": -500, "y": -200, "z": 4800 },
+      { "id": 17, "x": -550, "y": -150, "z": 4600 },
+      { "id": 18, "x": -450, "y": -100, "z": 4900 }
     ],
-    "connections": [[16, 17], [17, 18]]
+    "connections": [[16, 17], [17, 18]],
+    "cameraPosition": {
+      "x": -2500,
+      "y": -1000,
+      "z": 5000
+    },
+    "lookAt": {
+      "x": -2500,
+      "y": -1000,
+      "z": 4700
+    }
   },
   {
-    "name": "Taurus",
+    "name": "Le Serpent",
+    "infos": "Le Serpent est une grande constellation situ\u00e9e pr\u00e8s du ciel de l'\u00e9quateur c\u00e9leste.",
+    "main_star": "Unukalhai",
+    "average_magnitude": 2.6,
     "stars": [
-      { "id": 19, "x": -50, "y": -100, "z": -150 },
-      { "id": 20, "x": -40, "y": -110, "z": -160 },
-      { "id": 21, "x": -30, "y": -120, "z": -170 }
+      {"id": 19,
+        "x": 342.83,
+        "y": -755.55,
+        "z": -4121.16
+      },
+      {"id": 20,
+        "x": 216.84,
+        "y": 765.56,
+        "z": -4573.85
+      },
+      {"id": 21,
+        "x": -3861.05,
+        "y": 461.33,
+        "z": -2372.28
+      }
     ],
-    "connections": [[19, 20], [20, 21]]
+    "connections": [
+      [
+        19,
+        20
+      ],
+      [
+        20,
+        21
+      ]
+    ],
+    "cameraPosition": {
+      "x": 1500,
+      "y": 0,
+      "z": 4500
+    },
+    "lookAt": {
+      "x": 1500,
+      "y": 0,
+      "z": 4000
+    }
   },
   {
-    "name": "Pegasus",
+    "name": "P\u00e9gase",
+    "infos": "P\u00e9gase est une grande constellation visible dans l'h\u00e9misph\u00e8re nord.",
+    "main_star": "Enif",
+    "average_magnitude": 2.4,
     "stars": [
-      { "id": 22, "x": -200, "y": 300, "z": 700 },
-      { "id": 23, "x": -210, "y": 310, "z": 710 },
-      { "id": 24, "x": -220, "y": 320, "z": 720 }
+      {
+        "id": 22,
+        "x": -2090.4,
+        "y": 2643.48,
+        "z": -2879.28
+      },
+      {
+        "id": 23,
+        "x": 3874.99,
+        "y": 1693.19,
+        "z": -569.96
+      },
+
+      {
+        "id": 24,
+        "x": -633.8,
+        "y": -1852.5,
+        "z": 4084.2
+      }
     ],
-    "connections": [[22, 23], [23, 24]]
+    "connections": [
+      [
+        22,
+        23
+      ],
+      [
+        23,
+        24
+      ]
+    ],
+    "cameraPosition": {
+      "x": 2000,
+      "y": -2000,
+      "z": 4000
+    },
+    "lookAt": {
+      "x": 2000,
+      "y": -2000,
+      "z": 3500
+    }
   },
   {
-    "name": "Virgo",
+    "name": "La Petite Ourse",
+    "infos": "La Petite Ourse contient l'\u00e9toile polaire, qui marque la direction du nord.",
+    "main_star": "Polaris",
+    "average_magnitude": 2.0,
     "stars": [
-      { "id": 25, "x": 50, "y": -70, "z": 200 },
-      { "id": 26, "x": 60, "y": -60, "z": 210 },
-      { "id": 27, "x": 70, "y": -50, "z": 220 }
+      {
+        "id": 25,
+        "x": -1759.45,
+        "y": 3224.75,
+        "z": -3242.15
+      },
+      {
+        "id": 26,
+        "x": 6.21,
+        "y": 4727.36,
+        "z": 153.45
+      },
+      {
+        "id": 27,
+        "x": -893.78,
+        "y": -4688.09,
+        "z": 911.25
+      }
     ],
-    "connections": [[25, 26], [26, 27]]
+    "connections": [
+      [
+        25,
+        26
+      ],
+      [
+        26,
+        27
+      ]
+    ],
+    "cameraPosition": {
+      "x": 2500,
+      "y": 2000,
+      "z": 4500
+    },
+    "lookAt": {
+      "x": 2500,
+      "y": 2000,
+      "z": 4000
+    }
   },
   {
-    "name": "Phoenix",
+    "name": "Le B\u00e9lier",
+    "infos": "Le B\u00e9lier est une petite constellation situ\u00e9e pr\u00e8s de l'\u00e9cliptique.",
+    "main_star": "Hamal",
+    "average_magnitude": 2.0,
     "stars": [
-      { "id": 28, "x": -300, "y": 350, "z": 800 },
-      { "id": 29, "x": -290, "y": 340, "z": 810 },
-      { "id": 30, "x": -280, "y": 330, "z": 820 }
+      {
+        "id": 28,
+        "x": 2025.29,
+        "y": 2262.06,
+        "z": 3820.55
+      },
+      {
+        "id": 29,
+        "x": 3062.62,
+        "y": 14.25,
+        "z": 2614.83
+      },
+      {
+        "id": 30,
+        "x": 2987.63,
+        "y": 2222.11,
+        "z": -1892.5
+      }
     ],
-    "connections": [[28, 29], [29, 30]]
+    "connections": [
+      [
+        28,
+        29
+      ],
+      [
+        29,
+        30
+      ]
+    ],
+    "cameraPosition": {
+      "x": 1000,
+      "y": 1500,
+      "z": 4000
+    },
+    "lookAt": {
+      "x": 1000,
+      "y": 1500,
+      "z": 3500
+    }
+  },
+  {
+    "name": "Les G\u00e9meaux",
+    "infos": "Les G\u00e9meaux repr\u00e9sentent les deux jumeaux mythologiques Castor et Pollux.",
+    "main_star": "Castor",
+    "average_magnitude": 1.6,
+    "stars": [
+      {
+        "id": 31,
+        "x": -1520.75,
+        "y": 3618.89,
+        "z": 786.15
+      },
+      {
+        "id": 32,
+        "x": 583.28,
+        "y": -284.11,
+        "z": -4377.09
+      },
+      {
+        "id": 33,
+        "x": -681.57,
+        "y": -1336.73,
+        "z": -3990.79
+      }
+    ],
+    "connections": [
+      [
+        31,
+        32
+      ],
+      [
+        32,
+        33
+      ]
+    ],
+    "cameraPosition": {
+      "x": 500,
+      "y": 500,
+      "z": 4000
+    },
+    "lookAt": {
+      "x": 500,
+      "y": 500,
+      "z": 3500
+    }
+  },
+  {
+    "name": "Le Cancer",
+    "infos": "Le Cancer est une petite constellation du zodiaque, avec une forme peu distincte.",
+    "main_star": "Acubens",
+    "average_magnitude": 3.0,
+    "stars": [
+      {
+        "id": 34,
+        "x": 2142.24,
+        "y": 1909.77,
+        "z": -2810.91
+      },
+      {
+        "id": 35,
+        "x": -0.23,
+        "y": 29.55,
+        "z": 4049.11
+      },
+      {
+        "id": 36,
+        "x": -3282.68,
+        "y": 192.19,
+        "z": 2555.03
+      }
+    ],
+    "connections": [
+      [
+        34,
+        35
+      ],
+      [
+        35,
+        36
+      ]
+    ],
+    "cameraPosition": {
+      "x": -1500,
+      "y": -1000,
+      "z": 4500
+    },
+    "lookAt": {
+      "x": -1500,
+      "y": -1000,
+      "z": 4000
+    }
+  },
+  {
+    "name": "Le Lion",
+    "infos": "Le Lion est une constellation du zodiaque visible durant le printemps.",
+    "main_star": "Regulus",
+    "average_magnitude": 1.4,
+    "stars": [
+      {
+        "id": 37,
+        "x": 601.33,
+        "y": 1697.88,
+        "z": 3879.71
+      },
+      {
+        "id": 38,
+        "x": -1561.95,
+        "y": 2504.05,
+        "z": -3907.2
+      },
+      {
+        "id": 39,
+        "x": 1301.82,
+        "y": 1752.84,
+        "z": -3363.56
+      }
+    ],
+    "connections": [
+      [
+        37,
+        38
+      ],
+      [
+        38,
+        39
+      ]
+    ],
+    "cameraPosition": {
+      "x": -2500,
+      "y": -1500,
+      "z": 5000
+    },
+    "lookAt": {
+      "x": -2500,
+      "y": -1500,
+      "z": 4500
+    }
+  },
+  {
+    "name": "La Vierge",
+    "infos": "La Vierge est une grande constellation de l'h\u00e9misph\u00e8re sud.",
+    "main_star": "Spica",
+    "average_magnitude": 1.0,
+    "stars": [
+      {
+        "id": 40,
+        "x": 4221.73,
+        "y": -60.87,
+        "z": -174.7
+      },
+      {
+        "id": 41,
+        "x": 16.24,
+        "y": 3300.01,
+        "z": -3176.87
+      },
+      {
+        "id": 42,
+        "x": 460.8,
+        "y": -1910.18,
+        "z": 3545.84
+      }
+    ],
+    "connections": [
+      [
+        40,
+        41
+      ],
+      [
+        41,
+        42
+      ]
+    ],
+    "cameraPosition": {
+      "x": -3500,
+      "y": 2000,
+      "z": 4000
+    },
+    "lookAt": {
+      "x": -3500,
+      "y": 2000,
+      "z": 3500
+    }
+  },
+  {
+    "name": "La Balance",
+    "infos": "La Balance est une constellation du zodiaque, visible l'\u00e9t\u00e9 dans l'h\u00e9misph\u00e8re nord.",
+    "main_star": "Zubenelgenubi",
+    "average_magnitude": 2.6,
+    "stars": [
+      {
+        "id": 43,
+        "x": -195.98,
+        "y": 374.34,
+        "z": -4177.92
+      },
+      {
+        "id": 44,
+        "x": -2797.37,
+        "y": -2402.23,
+        "z": -2660.04
+      },
+      {
+        "id": 45,
+        "x": -2265.03,
+        "y": 3436.86,
+        "z": 1193.08
+      }
+    ],
+    "connections": [
+      [
+        43,
+        44
+      ],
+      [
+        44,
+        45
+      ]
+    ],
+    "cameraPosition": {
+      "x": 3000,
+      "y": -1500,
+      "z": 4500
+    },
+    "lookAt": {
+      "x": 3000,
+      "y": -1500,
+      "z": 4000
+    }
+  },
+  {
+    "name": "Ophiucus",
+    "infos": "Ophiucus est une constellation qui contient l'ast\u00e9risme du Serpent.",
+    "main_star": "Rasalhague",
+    "average_magnitude": 2.1,
+    "stars": [
+      {
+        "id": 46,
+        "x": 3915.36,
+        "y": 1124.22,
+        "z": 1124.16
+      },
+      {
+        "id": 47,
+        "x": -1557.59,
+        "y": -24.02,
+        "z": 4185.6
+      },
+      {
+        "id": 48,
+        "x": 1436.1,
+        "y": 610.97,
+        "z": 4257.08
+      }
+    ],
+    "connections": [
+      [
+        46,
+        47
+      ],
+      [
+        47,
+        48
+      ]
+    ],
+    "cameraPosition": {
+      "x": 4000,
+      "y": 1500,
+      "z": 4500
+    },
+    "lookAt": {
+      "x": 4000,
+      "y": 1500,
+      "z": 4000
+    }
+  },
+  {
+    "name": "Le Sagittaire",
+    "infos": "Le Sagittaire est une constellation du zodiaque, visible pendant l'\u00e9t\u00e9.",
+    "main_star": "Kaus Australis",
+    "average_magnitude": 2.7,
+    "stars": [
+      {
+        "id": 49,
+        "x": 3473.64,
+        "y": -3319.67,
+        "z": -1247.95
+      },
+      {
+        "id": 50,
+        "x": -434.19,
+        "y": -198.61,
+        "z": 4155.49
+      },
+      {
+        "id": 51,
+        "x": 110.38,
+        "y": -1559.23,
+        "z": 4163.03
+      }
+    ],
+    "connections": [
+      [
+        49,
+        50
+      ],
+      [
+        50,
+        51
+      ]
+    ],
+    "cameraPosition": {
+      "x": -500,
+      "y": 2000,
+      "z": 4000
+    },
+    "lookAt": {
+      "x": -500,
+      "y": 2000,
+      "z": 3500
+    }
   }
 ]

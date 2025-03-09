@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-export default function CameraController({ focusPlanet }) {
+export default function CameraController({ focusPlanet, planets, constellations }) {
+
   const { camera, scene } = useThree();
   const targetPosition = useRef(new THREE.Vector3());
   const targetLookAt = useRef(new THREE.Vector3());
