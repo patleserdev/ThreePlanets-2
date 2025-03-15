@@ -1,0 +1,12 @@
+/* Appliquer un effet hover aux planètes */
+.spaceIcon {
+  transition: fill 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.spaceIcon:hover > .circle1 {
+  fill: transparent; /* Change la couleur au hover */
+}
+
+.spaceIcon:hover > .circle2 {
+  fill: white; /* Change en rouge au hover */
+}

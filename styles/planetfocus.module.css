@@ -1,0 +1,73 @@
+
+/** affichage des planètes à cibler et animation d'affichage**/
+.planetFocus {
+  position: absolute;
+  bottom: 4rem;
+  left: -11rem;
+  padding: 1rem;
+  color: rgb(255, 255, 255, 0.5);
+  background-color: rgb(255, 255, 255, 0.2);
+  z-index: 100;
+  border-radius: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  backdrop-filter: blur(5px);
+
+}
+
+.slideRight
+{
+  animation: slide-right 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550) forwards;
+}
+
+@keyframes slide-right {
+  0% {
+            transform: translateX(-12rem);
+  }
+  100% {
+            transform: translateX(12rem);
+  }
+}
+
+.slideLeft
+{
+  animation: slide-left 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550) forwards;
+}
+
+@keyframes slide-left {
+  0% {
+            transform: translateX(12rem);
+  }
+  100% {
+            transform: translateX(-12rem);
+  }
+}
+
+.planetFocus button {
+  color: rgb(255, 255, 255, 0.7);
+  padding: 0.3rem;
+  transition: 1s all;
+}
+
+
+.planetFocus button:hover {
+  color: rgb(0, 255, 255, 0.7);
+}
+.planetFocusIcon
+{
+  position: absolute;
+  margin:10;
+  bottom:0;
+  left:0;
+  height: 30;
+  width: 30;
+  z-index: 200;
+  fill:rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition:1s cubic-bezier(0.16, 1, 0.3, 1) 0s; 
+}
+.planetFocusIcon:hover
+{
+  fill:rgba(255, 255, 255, 0.8);
+}

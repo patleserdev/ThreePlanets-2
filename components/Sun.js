@@ -7,7 +7,7 @@ import styles from "@/styles/display.module.css"
 import { PointLight,TextureLoader  } from "three"; // Import nécessaire
 import { useLoader } from "@react-three/fiber";
 
-export default function Sun({ name, size, position, color, speed,onClick, emitsLight = false,starTexture,isPaused,clock,elapsedTimeAtPause }) {
+export default function Sun({ name, size, position, color, speed,onClick, emitsLight = false,starTexture,isPaused,clock,elapsedTimeAtPause, getplanetPosition }) {
 
   const sunTexture = useLoader(TextureLoader, starTexture); // Charger la texture du Soleil
   const ref = useRef();
@@ -19,6 +19,11 @@ export default function Sun({ name, size, position, color, speed,onClick, emitsL
 
     ref.current.position.x = position[0] * Math.cos(elapsedTime * speed);
     ref.current.position.z = position[0] * Math.sin(elapsedTime * speed);
+    }
+
+    // Remonter la position de la planète via `getplanetPosition`
+    if (getplanetPosition) {
+      getplanetPosition(name, ref.current.position);
     }
   });
  

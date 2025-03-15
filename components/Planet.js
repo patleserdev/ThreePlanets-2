@@ -15,8 +15,8 @@ export default function Planet(
     sunRef,
     isPaused,
     clock,
-    elapsedTimeAtPause
-
+    elapsedTimeAtPause,
+    getplanetPosition
   }
 ) {
   const ref = useRef();
@@ -59,8 +59,12 @@ export default function Planet(
       ringsRef.current.position.z = ref.current.position.z;
       ringsRef.current.rotation.x = THREE.MathUtils.degToRad(inclination); // Ajuste les anneaux à l'inclinaison
     }
-  });
 
+     // Remonter la position de la planète via `getplanetPosition`
+     if (getplanetPosition) {
+      getplanetPosition(name, ref.current.position);
+    }
+  });
   return (
     <>
       {/* Planète */}
