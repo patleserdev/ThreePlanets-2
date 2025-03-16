@@ -26,7 +26,7 @@ import PlanetViewer from "./PlanetViewer.js";
 import SpaceIcon from "@/components/SpaceIcon"
 import { Line, LineBasicMaterial, BufferGeometry, Vector3,RingGeometry, MeshBasicMaterial, Mesh } from 'three';
 import HighlightPlanet from "./HighlightPlanet.js"
-
+import Navbar from "./Navbar.js";
 const Orbit = ({ orbitRadius, inclination }) => {
   // Créer un tableau de points pour la trajectoire circulaire
   const points = [];
@@ -79,6 +79,7 @@ setSelectedPlanet(e)
 
   return (
     <div className={styles.boxContainer}>
+      <Navbar/>
       <PlanetFocus setFocus={setFocus} setSelectedPlanet={selectPlanet}/>
       {!selectedPlanet &&
       <Canvas

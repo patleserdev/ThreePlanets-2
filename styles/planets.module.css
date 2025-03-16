@@ -1,0 +1,182 @@
+.container {
+  background-color: rgb(46, 46, 45);
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+
+.content
+{
+  height: 100vh;
+  width: 100%;
+  background-image: url("/pictures/banner.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.overlay
+{
+  width: 100%;
+   height: 100vh;
+  background-color: rgb(0, 0, 0,0.5);
+}
+
+.content h1 {
+  padding-left:2rem;
+  color: #fff;
+  font-size: 300%;
+  font-weight: 700;
+  text-shadow: 5px 5px 20px black;
+}
+
+.content h2 {
+  padding-left:3rem;
+  color: #fff;
+  font-size: 150%;
+  text-shadow: 5px 5px 20px black;
+}
+
+.content h3 {
+  padding-left:4rem;
+  color: #fff;
+  font-size: 150%;
+  text-shadow: 5px 5px 20px black;
+}
+
+.content p {
+  padding-top: 1rem;
+  padding-left:5rem;
+  color: #fff;
+  font-size: 120%;
+  line-height: 1.9;
+  width: 60%;
+  text-shadow: 1px 1px 10px black;
+}
+
+.content > ul {
+  padding-top: 1rem;
+  padding-left:5rem;
+  color: #fff;
+  font-size: 120%;
+  line-height: 1.9;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 10
+}
+
+.content  ul  li {
+
+color: white;
+padding-top: 0.5rem;
+padding-left:5rem;
+color: white;
+display: flex;
+flex-direction: row;
+}
+
+
+.cta {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  margin-left: 10rem;
+}
+
+.cta > a {
+  margin: 1rem;
+  margin-left: 10rem;
+  border: 1px solid white;
+  padding: 1rem;
+  transition: 0.5s all;
+  color:white;
+}
+
+.cta>a:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.planetCarousel
+{
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap:10;
+  justify-content: space-between;
+}
+
+.planetList
+{
+
+width: 10rem;
+
+}
+
+.planetList > ul
+{
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+
+.planetList > ul > li
+{
+  padding-top: 0;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+ margin-bottom: 0.5rem;
+  color:#fff;
+  border: 1px solid white;
+  text-transform: uppercase;
+}
+
+.displayPlanet
+{
+  background-color: rgba(0,0,0,0.5);
+  padding: 1rem;
+  border:1px solid white;
+  width: 100%;
+  min-height: 100%;
+  border-top-right-radius: 12;
+  border-bottom-right-radius: 12;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.displayPlanet h2,.displayPlanet ul,.displayPlanet ul li,.displayPlanet p
+{
+  padding:0;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  width: 100%;
+  padding-right: 1rem;
+}
+
+.displayPlanetContent3D
+{
+  overflow: hidden;
+  height: 100%;
+  width: 50%;
+  border-radius: 12;
+}
+
+@media (min-width: 479px) and (max-width: 959px) 
+{
+
+
+}
+
+@media (max-width: 478px) {
+
+ 
+}

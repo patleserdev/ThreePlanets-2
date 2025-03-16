@@ -1,5 +1,7 @@
-.container {
-  height: 100vh;
+
+
+.planetViewerContainer {
+  height: 100%;
   width: 100%;
   position: relative;
   z-index: 1;

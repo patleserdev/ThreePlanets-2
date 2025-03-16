@@ -1,42 +1,56 @@
+/** Navbar **/
 .navbar {
-    background-color: #222;
-    color: white;
-    padding: 1rem;
-    min-height: 5vh;
-  }
-  
-  .navbarList {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-wrap: wrap;
-  }
-  
-  .navItem {
-    margin-right: 0.5rem;
-    padding: 5px;
-  }
+  position:relative ;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0.5rem;
+  z-index: 1;
+ border-bottom-left-radius: 100px;
+ display: flex;
+ flex-direction: row;
+ padding-left: 5rem;
+}
+
+.navbar:after {
+content:'';
+position:absolute;
+right: 0rem;
+bottom: -15rem;
+height: 15rem;
+width: 15rem;
+background: transparent;
+box-shadow: 50px -50px 0 0  rgba(0, 0, 0, 0.7);; /* Décalage et couleur */
+border-radius: 0 100% 100% 0; /* Forme du quart de rond */
+
+}
+
+.navbar ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  color: #fff;
+  font-size: 120%;
+  z-index: 5;
+}
+
+.navbar>ul li {
+  padding: 1rem;
+  transition: 0.5s all;
+  z-index: 6;
+}
+
+.navbar>ul li:hover {
+  color: rgba(255, 255, 255, 0.7)
+}
+
+@media (min-width: 479px) and (max-width: 959px) {
 
 
-  
-  .navItem a,.navItem span {
-    color: rgb(189, 183, 183);
-    text-decoration: none;
-    font-weight: bold;
-    text-transform: capitalize;
-    
-  }
+}
 
- .navItem span.active
-  {
-    color:rgb(255, 255, 255);
-  }
-  
-  .navItem a:hover {
-    text-decoration: underline;
-  }
-  
+@media (max-width: 478px) {
+
+ 
+}

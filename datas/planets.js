@@ -122,12 +122,13 @@ const planets = [
     infos: [
     'Uranus est inclinée sur le côté et tourne en 17h environ. 🌀',
     'Uranus tourne presque sur le côté avec une inclinaison de 98°. 🌀',
-    ""
+    "c'est la planete la plus froide"
   ],
     texture: '/textures/2k_uranus.jpg', 
     hasRings: true,
     display:true,
     orbitRadius: 640, // Rayon de l'orbite
+    temperature:-224
   },
   { 
     name: 'Neptune', 
@@ -143,6 +144,7 @@ const planets = [
     hasRings: true,
     display:true,
     orbitRadius: 1000, // Rayon de l'orbite
+    temperature:-220
   }
 ];
 

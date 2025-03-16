@@ -89,7 +89,7 @@ const StarBackground = () => {
 
 export default function PlanetViewer({ planet }) {
   return (
-    <>
+    <div className={styles.planetViewerContainer}>
       <Canvas camera={{ position: [10, 10, 10] }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
@@ -102,6 +102,6 @@ export default function PlanetViewer({ planet }) {
       {!planet && (
         <div className={styles.noplanet}>Aucune planète sélectionnée</div>
       )}
-    </>
+    </div>
   );
 }
