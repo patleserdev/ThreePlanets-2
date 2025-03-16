@@ -6,10 +6,29 @@ import Navbar from "@/components/Navbar.js";
 import planets from "@/datas/planets.js";
 import PlanetViewer from "@/components/PlanetViewer.js";
 import { useState } from "react";
+interface PlanetInterface {
+  name: string;
+  size?: number;
+  position?: number[];
+  color?: string;
+  speed?: number;
+  rotation?: number;
+  inclination?: number;
+  infos?: string[];
+  texture?: string;
+  hasRings?: boolean;
+  display?: boolean;
+  orbitRadius?: number ;  // Optionnel si tu ne veux pas toujours fournir cette propriété
+  emitsLight?: boolean;  // Optionnel
+  satellites?: string[]; // Optionnel
+  temperature?: number;  // Optionnel
+  sunDistance?:boolean
+}
+
 
 const planetsPage = () => {
 
-  const [selectedPlanet,setSelectedPlanet]=useState(null)
+  const [selectedPlanet,setSelectedPlanet]=useState<PlanetInterface| null>(null)
   return (
     <div className={styles.container} >
       <div className={styles.content}>
@@ -24,7 +43,7 @@ const planetsPage = () => {
                 {planets.map((planet,key) => (
                   planet.display ?
                   <li key={key} onClick={() => { 
-                    setSelectedPlanet(planet);
+                    setSelectedPlanet(planet as PlanetInterface);
                   }}>{planet.name}</li> :null
                 ))}
               </ul>
