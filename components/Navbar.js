@@ -7,7 +7,7 @@ export default function Navbar()
 
     return (
         <nav className={styles.navbar}>
-            <Image src={"/pictures/logo.png"} alt="logo" width={100} height={100}/>
+            <Image src={"/pictures/logo.png"} alt="logo" width={100} height={100} className={styles.logo}/>
         <ul>
           <li>
             <Link href="/">Accueil</Link>

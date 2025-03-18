@@ -66,7 +66,7 @@ const planetsPage = () => {
                     Distance du soleil : {selectedPlanet && selectedPlanet.sunDistance ? selectedPlanet.sunDistance : "Non précisé"}
                   </li>
                   <li>
-                    Température : {selectedPlanet && selectedPlanet.temperature ? `${selectedPlanet.temperature}°c` : "Non précisé"}
+                    Température moyenne: {selectedPlanet && selectedPlanet.temperature ? `${selectedPlanet.temperature}°c` : "Non précisé"}
                   </li>
                 </ul>
 

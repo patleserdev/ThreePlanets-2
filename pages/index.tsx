@@ -1,4 +1,4 @@
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/index.module.css";
 import SolarSystem from "@/components/SolarSystem.js";
 import Image from "next/image.js";
 import Link from "next/link.js";

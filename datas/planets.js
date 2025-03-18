@@ -1,7 +1,8 @@
 const planets = [
   { 
-    name: 'Soleil', 
-    size: 10.9,  
+    name: 'Soleil',
+    planetSize:'1 392 700',
+    size: 1,  
     position: [11, 0, 0],  // Position ajustée
     color: 'yellow', 
     speed: 0.001, 
@@ -10,11 +11,13 @@ const planets = [
     infos: ["Le soleil n'est pas une planète ,c'est une étoile très chaude 🌞","toute les planètes du système solaire tournent autour du soleil mais pas a la même vitesse ✨"] ,
     texture: '/textures/2k_sun.jpg', 
     hasRings: false,
-    display:false
+    display:false,
+
   },
   { 
-    name: 'Mercure', 
-    size: 0.038,  
+    name: 'Mercure',
+    planetSize:'4879',  
+    size: 0.035,  
     position: [13, 0, 0],  // Position ajustée
     color: 'gray', 
     speed: 0.024, 
@@ -26,11 +29,14 @@ const planets = [
     hasRings: false,
     display:true,
     orbitRadius: 13, // Rayon de l'orbite
-
+    sunDistanceKms:57900000,
+    sunDistanceUA:0.39,
+    temperature:167,
   },
   { 
     name: 'Vénus', 
-    size: 0.095,  
+    planetSize:'12104', 
+    size: 0.087,  
     position: [24, 0, 0],  // Position ajustée
     color: 'yellow', 
     speed: 0.0615, 
@@ -42,12 +48,16 @@ const planets = [
     hasRings: false,
     emitsLight: true,
     display:true,
-    orbitRadius: 24, // Rayon de l'orbite
+    orbitRadius: 24, // Rayon de l'orbite,
+    sunDistanceKms:108200000,
+    sunDistanceUA:0.72,
+    temperature:464,
 
   },
   { 
     name: 'Terre', 
-    size: 0.1,  
+    planetSize:'12742', 
+    size: 0.091,  
     position: [33, 0, 0],  
     color: 'blue', 
     speed: 0.1, 
@@ -63,10 +73,14 @@ const planets = [
       { distance: 0.5, size: 0.05, speed: 0.05, texture: "/textures/2k_moon.jpg" }
     ],
     orbitRadius: 33, // Rayon de l'orbite
+    sunDistanceKms:149600000,
+    sunDistanceUA:1,
+    temperature:15,
   },
   { 
     name: 'Mars', 
-    size: 0.053,  
+    planetSize:'6779', 
+    size: 0.049,  
     position: [51, 0, 0],  
     color: 'red', 
     speed: 0.053, 
@@ -79,10 +93,14 @@ const planets = [
     hasRings: false,
     display:true,
     orbitRadius: 51, // Rayon de l'orbite
+    sunDistanceKms:227900000,
+    sunDistanceUA:1.52,
+    temperature:-63,
   },
   { 
-    name: 'Jupiter', 
-    size: 1.12,  
+    name: 'Jupiter',
+    planetSize:'139820',  
+    size: 0.1,  
     position: [173, 0, 0],  
     color: 'brown', 
     speed: 0.0084, 
@@ -94,10 +112,14 @@ const planets = [
     hasRings: false,
     display:true,
     orbitRadius: 173, // Rayon de l'orbite
+    sunDistanceKms:778500000,
+    sunDistanceUA:5.2,
+    temperature:-110,
   },
   { 
     name: 'Saturne', 
-    size: 0.945,  
+    planetSize:'116460', 
+    size: 0.083,  
     position: [319, 0, 0],  
     color: 'goldenrod', 
     speed: 0.0034, 
@@ -110,10 +132,14 @@ const planets = [
     hasRings: true,
     display:true,
     orbitRadius: 319, // Rayon de l'orbite
+    sunDistanceKms:1433500000,
+    sunDistanceUA:9.58,
+    temperature:-140,
   },
   { 
     name: 'Uranus', 
-    size: 0.401,  
+    planetSize:'50724', 
+    size: 0.036,  
     position: [640, 0, 0],  
     color: 'lightblue', 
     speed: 0.0012, 
@@ -128,11 +154,15 @@ const planets = [
     hasRings: true,
     display:true,
     orbitRadius: 640, // Rayon de l'orbite
-    temperature:-224
+    temperature:-224,
+    sunDistanceKms:2872500000,
+    sunDistanceUA:19.18,
+    temperature:-195,
   },
   { 
     name: 'Neptune', 
-    size: 0.388,  
+    planetSize:'49244', 
+    size: 0.035,  
     position: [1000, 0, 0],  
     color: 'blue', 
     speed: 0.0006,
@@ -144,7 +174,10 @@ const planets = [
     hasRings: true,
     display:true,
     orbitRadius: 1000, // Rayon de l'orbite
-    temperature:-220
+    temperature:-220,
+    sunDistanceKms:4495100000,
+    sunDistanceUA:30.07,
+    temperature:-200,
   }
 ];
 

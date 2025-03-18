@@ -76,6 +76,10 @@ export default function SolarSystem() {
  const selectPlanet=(e) =>{
 setSelectedPlanet(e)
  }
+ const togglePause=(e) =>{
+  setIsPaused(!isPaused)
+   }
+  
 
   return (
     <div className={styles.boxContainer}>
@@ -215,10 +219,11 @@ setSelectedPlanet(e)
         </div>
       )}
 
-      {/** Boîte d'informations des planètes  **/}
+      {/**icône de  Boîte d'informations des planètes  **/}
+      {selectedPlanet && 
       <div className={styles.infoBoxIcon} onClick={() => setDisplayInfoBox(!displayInfoBox)}>
         <InfosBoxIcon />
-      </div>
+      </div>}
     </div>
   );
 }
