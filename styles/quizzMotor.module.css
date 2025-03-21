@@ -33,7 +33,7 @@
   padding-left: 1rem;
   padding-top:0.5rem;
   padding-bottom:0.5rem;
-  gap:10
+  gap:20
 }
 
 .QuizzMotor div > input[type='radio']{
@@ -127,7 +127,7 @@ flex-direction: row;
   .button
   {
     width: 100%;
-    margin: 0.5rem 0 0.5rem 0;
+    margin: 2rem 0 0 0;
 
   }
   
@@ -152,4 +152,10 @@ flex-direction: row;
  width: 50%;
   }
 
+  .QuizzMotor div > input[type='radio']{
+
+    width: 30px;
+    height: 30px;
+   
+  }
 }
