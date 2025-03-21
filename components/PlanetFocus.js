@@ -4,7 +4,8 @@ import PlanetsIcon from "@/components/PlanetsIcon.js";
 import { useEffect, useState } from "react";
 
 export default function PlanetFocus({ setFocus,setSelectedPlanet }) {
-    const [displayPlanetsChoice, setDisplayPlanetsChoice] = useState(false);
+    const [displayPlanetsChoice, setDisplayPlanetsChoice] = useState(true);
+    
 
     return (
         <>

@@ -30,7 +30,7 @@ const planetsPage = () => {
 
   const [selectedPlanet,setSelectedPlanet]=useState<PlanetInterface| null>(null)
   return (
-    <div className={styles.container} >
+    <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.overlay}>
           <Navbar />

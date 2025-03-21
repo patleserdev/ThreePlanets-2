@@ -1,0 +1,155 @@
+
+.QuizzMotor
+{
+  border:1px solid black ;
+  padding:1rem;
+}
+
+.QuizzMotor h1{
+  padding-bottom: 1rem;
+  font-size: 300%;
+}
+
+.QuizzMotor h2
+{
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  font-size: 230%;
+}
+
+.QuizzMotor h3
+{
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  font-size: 200%;
+}
+
+.QuizzMotor div{
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 1rem;
+  padding-top:0.5rem;
+  padding-bottom:0.5rem;
+  gap:10
+}
+
+.QuizzMotor div > input[type='radio']{
+  -webkit-appearance: none; /* Désactive l'apparence par défaut du navigateur */
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #4CAF50; /* Couleur et épaisseur du bord */
+  border-radius: 50%; /* Pour garder la forme circulaire du bouton radio */
+  background-color: white; /* Couleur de fond (avant sélection) */
+  position: relative; /* Nécessaire pour positionner l'élément de sélection à l'intérieur */
+  cursor: pointer; /* Curseur pointeur pour l'interaction */
+}
+.QuizzMotor div > input[type='radio']:checked {
+  background-color: #4CAF50; /* Fond du bouton radio quand il est sélectionné */
+  border-color: #4CAF50; /* Bordure quand le bouton est sélectionné */
+}
+
+.QuizzMotor div > input[type='radio']:checked::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  background-color: white; /* Le cercle intérieur (pour l'indication de sélection) */
+}
+
+.button
+{
+  margin-top: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border:1px solid black;
+  padding:0.5rem;
+  padding-left:1rem;
+  padding-right:1rem
+}
+
+.loader
+{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.QuizzMotor ul
+{
+  padding-left: 1rem;
+}
+
+.QuizzMotor ul li
+{
+display: flex;
+flex-direction: row; 
+
+}
+
+
+
+@media (max-width: 478px) 
+{
+  .QuizzMotor
+  {
+    border:1px solid black ;
+    padding:1rem 1rem 1rem 1rem ;
+    width:100%;
+    min-height: 60vh;
+  }
+  
+  .QuizzMotor h1{
+    padding-bottom: 1rem;
+    font-size: 300%;
+  }
+  
+  .QuizzMotor h2
+  {
+    padding-bottom: 1rem;
+    font-size: 150%;
+  }
+  
+  .QuizzMotor h3
+  {
+
+    padding-bottom: 1rem;
+    font-size: 120%;
+  }
+  
+  
+  .button
+  {
+    width: 100%;
+    margin: 0.5rem 0 0.5rem 0;
+
+  }
+  
+  .loader
+  {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin: auto;
+  }
+  
+  .QuizzMotor ul
+  {
+    padding-left: 1rem;
+  }
+  .QuizzMotor ul li
+  {
+  width: 100%;  
+  }
+
+  .QuizzMotor ul li div
+  {
+ width: 50%;
+  }
+
+}

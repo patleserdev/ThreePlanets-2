@@ -1,0 +1,94 @@
+.container {
+
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  
+  
+  .content
+  {
+    padding: 5rem;
+  }
+
+  .content
+  h1{
+    padding-bottom: 1rem;
+    font-size: 300%;
+  }
+  
+  .content h2
+  {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    font-size: 230%;
+  }
+  
+  .content h3
+  {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    font-size: 200%;
+  }
+
+  .button
+  { 
+    margin: 1rem 1rem 1rem 0;
+    border:1px solid black;
+    padding:0.5rem 1rem 0.5rem 1rem;
+    transition:0.5s all;
+  }
+
+  .button:hover
+  {
+    background-color: black;
+    color:white
+  }
+
+  @media (max-width: 478px) 
+{
+  
+  
+  
+  .content
+  {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .content
+  h1{
+    padding-bottom: 0.5rem;
+    font-size: 300%;
+  }
+  
+  .content h2
+  {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    font-size: 230%;
+  }
+  
+  .content h3
+  {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    font-size: 200%;
+  }
+  .content p
+  {
+    padding-left: 0.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .button
+  { 
+    width: 100%;
+    margin: 0.5rem 0 0.5rem 0;
+  }
+
+
+
+}

@@ -18,6 +18,9 @@ export default function Navbar()
           <li>
             <Link href="/planets">Les planètes</Link>
           </li>
+          <li>
+            <Link href="/quizz">Quizz</Link>
+          </li>
         </ul>
       </nav>
     )

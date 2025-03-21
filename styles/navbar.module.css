@@ -12,19 +12,6 @@
  overflow: hidden;
 }
 
-.navbar:after {
-content:'';
-position:absolute;
-right: 0rem;
-bottom: -15rem;
-height: 15rem;
-width: 15rem;
-background: transparent;
-box-shadow: 50px -50px 0 0  rgba(0, 0, 0, 0.7);; /* Décalage et couleur */
-border-radius: 0 100% 100% 0; /* Forme du quart de rond */
-
-}
-
 .navbar ul {
   width: 100%;
   display: flex;
