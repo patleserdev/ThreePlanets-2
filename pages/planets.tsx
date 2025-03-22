@@ -22,7 +22,9 @@ interface PlanetInterface {
   emitsLight?: boolean;  // Optionnel
   satellites?: string[]; // Optionnel
   temperature?: number;  // Optionnel
-  sunDistance?:boolean
+  sunDistanceKms?:number;
+  sunDistanceUA?:number;
+  planetSize?:number;
 }
 
 
@@ -33,7 +35,7 @@ const planetsPage = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.overlay}>
-          <Navbar />
+       
 
           <h1>Les planètes</h1>
           <h2>Découvre les planètes qui entourent notre Terre !</h2>
@@ -50,11 +52,13 @@ const planetsPage = () => {
             </div>
 
             <div className={styles.displayPlanet}>
-            <div className={styles.displayPlanetContentText}>
+              {!selectedPlanet && <h2>Sélectionnez une planète</h2>}
+
+              {selectedPlanet && <div className={styles.displayPlanetContentText}>
                 <h2>{selectedPlanet ? selectedPlanet.name : "Planète non sélectionée"}</h2>
                 <ul>
                   <li>
-                    Taille : {selectedPlanet ? selectedPlanet.size : "Non précisé"}
+                    Taille : {selectedPlanet ? selectedPlanet.planetSize + " kms" : "Non précisé"}
                   </li>
                   <li>
                     Couleur dominante : {selectedPlanet ? selectedPlanet.color : "Non précisé"}
@@ -63,20 +67,24 @@ const planetsPage = () => {
                   Anneaux : {selectedPlanet && selectedPlanet.hasRings ? "OUI" : "Non"}
                   </li>
                   <li>
-                    Distance du soleil : {selectedPlanet && selectedPlanet.sunDistance ? selectedPlanet.sunDistance : "Non précisé"}
+                    Distance du soleil : &nbsp;
+                    {selectedPlanet && selectedPlanet.sunDistanceKms ? selectedPlanet.sunDistanceKms + " kms" : "Non précisé"} 
+                    &nbsp;/&nbsp;
+                    {selectedPlanet && selectedPlanet.sunDistanceUA ? selectedPlanet.sunDistanceUA + " UA" : "Non précisé"}
+
                   </li>
                   <li>
-                    Température moyenne: {selectedPlanet && selectedPlanet.temperature ? `${selectedPlanet.temperature}°c` : "Non précisé"}
+                    Température moyenne : {selectedPlanet && selectedPlanet.temperature ? `${selectedPlanet.temperature}°c` : "Non précisé"}
                   </li>
                 </ul>
 
-                <p>Description</p>
                 {selectedPlanet && selectedPlanet.infos ? selectedPlanet.infos.map((info) => <p>{info}</p>) : null}
-                </div>
+                </div>}
+
                 <div className={styles.displayPlanetContent3D}>
                   {selectedPlanet && <PlanetViewer planet={selectedPlanet}/>}
-                </div>
-            </div>
+                </div> 
+            </div> 
           </div>
         </div>
       </div>

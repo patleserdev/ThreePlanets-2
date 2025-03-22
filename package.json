@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-three/drei": "^10.0.3",
     "@react-three/fiber": "^9.0.4",
+    "framer-motion": "^12.5.0",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "next": "15.1.6",

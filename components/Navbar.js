@@ -1,9 +1,15 @@
 import Image from "next/image.js"
 import styles from "../styles/navbar.module.css"
 import Link from "next/link.js"
+import { useState } from "react";
 
 export default function Navbar()
 {
+
+  const [open, setOpen] = useState(false);
+  const handleClick = () => {
+    setOpen(!open);
+  };
 
     return (
         <nav className={styles.navbar}>
@@ -23,5 +29,6 @@ export default function Navbar()
           </li>
         </ul>
       </nav>
+      
     )
 }

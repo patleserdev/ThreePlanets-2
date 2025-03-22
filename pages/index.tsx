@@ -1,15 +1,12 @@
 import styles from "@/styles/index.module.css";
-import SolarSystem from "@/components/SolarSystem.js";
-import Image from "next/image.js";
 import Link from "next/link.js";
-import Navbar from "@/components/Navbar.js"
 
 const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
       <div className={styles.overlay}>
-       <Navbar/>
+     
         
           <h1>Voyage au Cœur du Système Solaire</h1>
           <h2>Du Soleil à Neptune, une aventure infinie vous attend !</h2>

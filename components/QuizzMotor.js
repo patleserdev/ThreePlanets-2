@@ -83,8 +83,9 @@ export default function QuizzMotor({ datas, control }) {
     // calcul du nombre de bonnes réponses par rapport au tableaux de données
     //comparer userResponses a datas[X].response
     //result = nb de bonnes réponses /nb de questions
-    if(step == 3)
+    if(step === 4)
         {
+         
             const comparison = compareAnswers(userResponses, datas);
             console.log(comparison)
             if(comparison)
@@ -92,6 +93,8 @@ export default function QuizzMotor({ datas, control }) {
                 setResults(comparison.results)
                 setNote(comparison.correctCount)
             }
+          
+           
             
         }
   }, [step]);
