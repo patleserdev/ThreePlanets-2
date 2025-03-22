@@ -116,6 +116,8 @@ export default function QuizzMotor({ datas, control }) {
     }
   };
 
+  console.log(userResponses)
+  console.log(results)
   // gère la fin des questions
   useEffect(() => {
     if (question == datas.length + 1) {
@@ -164,7 +166,7 @@ export default function QuizzMotor({ datas, control }) {
         <>
           <h3>Ton résultat : {note}/ {datas.length}</h3>
     <ul>
-    {datas.map((data,key) => <li key={key}><div>Question {key+1}</div> <div>{data.answer && data.answer != results[key] ? "✅" : "❌"}</div></li>)}
+    {note && datas.map((data,key) => <li key={key}><div>Question {key+1}</div> <div>{data.answer && data.answer == userResponses[key] ? "✅" : "❌"}</div></li>)}
 
     </ul>
         </>
@@ -172,7 +174,7 @@ export default function QuizzMotor({ datas, control }) {
 
       {loading && (
         <div className={styles.loader}>
-        <CircleLoader size={25} color={"#483596"} speedMultiplier={2} />
+        <CircleLoader size={25} color={"#ffffff"} speedMultiplier={1} />
         </div>
       )}
    

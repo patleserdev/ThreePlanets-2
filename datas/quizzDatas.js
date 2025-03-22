@@ -14,9 +14,7 @@ const quizzDatas = [
         choices:["Uranus","Jupiter","Mercure"],
         answer: 1
     
-    }
-    
-     ,
+    },
     { 
         question: "Combien de planètes composent le système solaire?", 
         choices:["5","8","9"],
@@ -45,13 +43,14 @@ const quizzDatas = [
     { 
         question: "Quelle planète est connue pour sa grande tempête appelée la Grande Tache Rouge?", 
         choices:["Jupiter","Mars","Vénus","Pluton"],
-        answer: "Jupiter" 
+        answer: 0 
     },
     { 
         question: "Quelle planète a une inclinaison extrême et semble rouler sur son orbite?", 
         choices:["Jupiter","Mars","Vénus","Uranus"],
         answer: 3 
     },
+    /**
     { 
         question: "Quelle est la seule planète où l'on trouve de l'eau sous forme liquide?", 
         choices:["Jupiter","Terre","Vénus","Uranus"],
@@ -75,7 +74,7 @@ const quizzDatas = [
     { 
         question: "Quelle planète possède des vents très rapides et violents?", 
         choices:["Terre","Uranus","Neptune","Jupiter"], 
-        answer: "Neptune"
+        answer: 2
     },
     { 
         question: "Quelle planète est principalement composée de gaz comme l'hydrogène et l'hélium?", 
@@ -100,8 +99,8 @@ const quizzDatas = [
     { 
         question: "Quelle est la planète la plus froide du système solaire?", 
         choices:["Jupiter","Saturne","Uranus","Vénus"],
-        answer: "Uranus" 
-    }
+        answer: 2 
+    }**/
   ];
 
   export default quizzDatas;

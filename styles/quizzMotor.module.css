@@ -3,12 +3,12 @@
 {
   border:1px solid black ;
   padding:1rem;
+  margin-left:5rem;
+  margin-right:5rem;
+  background: rgba(0,0,0,0.5);
+  min-height: 50vh;
 }
 
-.QuizzMotor h1{
-  padding-bottom: 1rem;
-  font-size: 300%;
-}
 
 .QuizzMotor h2
 {
@@ -47,6 +47,7 @@
   background-color: white; /* Couleur de fond (avant sélection) */
   position: relative; /* Nécessaire pour positionner l'élément de sélection à l'intérieur */
   cursor: pointer; /* Curseur pointeur pour l'interaction */
+  margin-right: 1rem;
 }
 .QuizzMotor div > input[type='radio']:checked {
   background-color: #4CAF50; /* Fond du bouton radio quand il est sélectionné */
@@ -64,21 +65,32 @@
   background-color: white; /* Le cercle intérieur (pour l'indication de sélection) */
 }
 
-.button
+.QuizzMotor div label
 {
-  margin-top: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  border:1px solid black;
-  padding:0.5rem;
-  padding-left:1rem;
-  padding-right:1rem
+color:white;
+font-size: 120%;
+}
+
+.QuizzMotor > button {
+  margin: 1rem;
+  border: 1px solid white;
+  padding: 1rem;
+  transition: 0.5s all;
+  color:white;
+}
+
+.QuizzMotor > button:hover {
+  background-color: #fff;
+  color: #000;
 }
 
 .loader
 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin:1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center!important;
 }
 
 .QuizzMotor ul
@@ -90,10 +102,13 @@
 {
 display: flex;
 flex-direction: row; 
-
+color:"#fff"
 }
 
-
+.QuizzMotor ul li div
+{
+color:#fff
+}
 
 @media (max-width: 478px) 
 {
@@ -102,7 +117,9 @@ flex-direction: row;
     border:1px solid black ;
     padding:1rem 1rem 1rem 1rem ;
     width:100%;
-    min-height: 60vh;
+    min-height: 100vh;
+    margin-left: 0;
+    margin-right: 0;
   }
   
   .QuizzMotor h1{
@@ -124,18 +141,15 @@ flex-direction: row;
   }
   
   
-  .button
-  {
+  .QuizzMotor > button {
+    margin: 0rem;
+    margin-top: 1rem;
     width: 100%;
-    margin: 2rem 0 0 0;
-
   }
   
-  .loader
-  {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin: auto;
+  .QuizzMotor > button:hover {
+    background-color: #fff;
+    color: #000;
   }
   
   .QuizzMotor ul
