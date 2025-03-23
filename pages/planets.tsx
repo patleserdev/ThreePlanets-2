@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar.js";
 import planets from "@/datas/planets.js";
 import PlanetViewer from "@/components/PlanetViewer.js";
 import { useState } from "react";
+
 interface PlanetInterface {
   name: string;
   size?: number;
@@ -20,7 +21,8 @@ interface PlanetInterface {
   display?: boolean;
   orbitRadius?: number ;  // Optionnel si tu ne veux pas toujours fournir cette propriété
   emitsLight?: boolean;  // Optionnel
-  satellites?: string[]; // Optionnel
+  satellites?: { distance: number; size: number; speed: number; texture: string }[];
+  // Optionnel
   temperature?: number;  // Optionnel
   sunDistanceKms?:number;
   sunDistanceUA?:number;
@@ -45,7 +47,7 @@ const planetsPage = () => {
                 {planets.map((planet,key) => (
                   planet.display ?
                   <li key={key} onClick={() => { 
-                    setSelectedPlanet(planet as PlanetInterface);
+                    setSelectedPlanet(planet as unknown  as PlanetInterface);
                   }}>{planet.name}</li> :null
                 ))}
               </ul>
