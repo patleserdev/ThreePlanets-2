@@ -1,0 +1,8 @@
+/* Appliquer un effet hover aux planètes */
+.icon {
+  transition: fill 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.icon:hover {
+  fill: rgba(255,255,255,0.5); /* Change la couleur au hover */
+}
