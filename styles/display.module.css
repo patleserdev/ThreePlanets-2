@@ -29,11 +29,11 @@
 .infoBoxIcon
 {
   position: absolute;
-  margin:10;
+  margin:10px;
   bottom:0.6rem;
   left:3rem;
-  height: 23;
-  width: 23;
+  height: 23px;
+  width: 23px;
   z-index: 200;
   fill:rgba(255, 255, 255, 0.5);
   cursor: pointer;
@@ -93,8 +93,8 @@
 
 .SpaceIcon svg
 {
-  height: 50;
-  width: 50;
+  height: 50px;
+  width: 50px;
   z-index: 100;
 }
 
@@ -221,8 +221,8 @@
  
     bottom:1.2rem;
     left:4rem;
-    height: 23;
-    width: 23;
+    height: 23px;
+    width: 23px;
 
   }
 
