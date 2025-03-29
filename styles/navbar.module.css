@@ -8,8 +8,25 @@
   border-bottom-left-radius: 100px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding-left: 5rem;
 }
+
+.title
+{
+padding: 1rem;
+width: 100%;
+}
+.title p
+{
+font-size: 2rem;
+font-family: "Boldonse";
+background: #6FD868;
+background: linear-gradient(to left, #6FD868 25%, #FCCD4D 63%, #F49F16 55%, #F56B1E 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
 
 .desktop {
   width: 100%;
@@ -55,6 +72,12 @@
 
   }
 
+  .title p
+{
+font-size: 1rem;
+
+}
+
   .desktop 
   {
     display: none;
@@ -84,7 +107,7 @@
     align-items: flex-start;
     justify-content: center;
     padding-left: 2rem;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.9);
     opacity: 1;
     transition: 1s all;
     animation: open 1s linear ;

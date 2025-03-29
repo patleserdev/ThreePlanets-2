@@ -15,7 +15,9 @@ export default function Navbar()
     return (
         <nav className={styles.navbar}>
             <Image src={"/pictures/logo.png"} alt="logo" width={100} height={100} className={styles.logo}/>
-
+          <div className={styles.title}>
+          <p>Three-Planets 2</p>
+          </div>
         
         <div className={styles.desktop}>
         <ul>
@@ -36,7 +38,7 @@ export default function Navbar()
         </div>
 
         <div className={styles.mobile}>
-        <div style={{width:40,height:40}} onClick={()=>handleClick()}><BurgerIcon/></div>
+        <div style={{width:36,height:36}} onClick={()=>handleClick()}><BurgerIcon/></div>
         </div>
         <div className={open ? styles.toggleOpen : styles.toggleClose  }>
        { open && <div> <ul>
