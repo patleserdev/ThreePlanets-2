@@ -6,6 +6,7 @@ position: relative;
 height: 100%;
 width: 100%;
 padding: 1rem;
+
 }
 
 .planetFocus {
@@ -21,7 +22,7 @@ padding: 1rem;
   flex-direction: column;
   align-items: flex-start;
   backdrop-filter: blur(5px);
-
+  z-index: 5;
 }
 
 .slideRight
@@ -74,8 +75,26 @@ padding: 1rem;
   fill:rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition:1s cubic-bezier(0.16, 1, 0.3, 1) 0s; 
+  z-index: 5;
 }
 .planetFocusIcon:hover
 {
   fill:rgba(255, 255, 255, 0.8);
 }
+
+
+@media (min-width: 479px) and (max-width: 959px) 
+{
+
+  
+}
+
+@media (max-width: 478px) {
+  .planetFocusIcon
+  {
+    margin:20;
+
+  }
+ 
+    
+  }

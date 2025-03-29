@@ -216,6 +216,21 @@
 }
 
 @media (max-width: 478px) {
+  .infoBoxIcon
+  {
+ 
+    bottom:1.2rem;
+    left:4rem;
+    height: 23;
+    width: 23;
+
+  }
+
+  .SpaceIcon 
+{
+  bottom:0.5rem;
+  left:7rem;
+}
 
   .infoBox {
   
