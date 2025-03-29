@@ -23,13 +23,19 @@ import { Clock } from "three"; // Importation de Clock de Three.js
 import PlanetFocus from "./PlanetFocus.js";
 import InfosBoxIcon from "@/components/InfosBoxIcon";
 import PlanetViewer from "./PlanetViewer.js";
-import SpaceIcon from "@/components/SpaceIcon"
-import { Line, LineBasicMaterial, BufferGeometry, Vector3,RingGeometry, MeshBasicMaterial, Mesh } from 'three';
-import HighlightPlanet from "./HighlightPlanet.js"
+import SpaceIcon from "@/components/SpaceIcon";
+import {
+  Line,
+  LineBasicMaterial,
+  BufferGeometry,
+  Vector3,
+  RingGeometry,
+  MeshBasicMaterial,
+  Mesh,
+} from "three";
+import HighlightPlanet from "./HighlightPlanet.js";
 import Navbar from "./Navbar.js";
-import Orbit from "./Orbit"
-
-
+import Orbit from "./Orbit";
 
 export default function SolarSystem() {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
@@ -55,15 +61,14 @@ export default function SolarSystem() {
     }
   };
 
+  const selectPlanet = (e) => {
+    setSelectedPlanet(e);
+  };
+  const togglePause = (e) => {
+    setIsPaused(!isPaused);
+  };
 
- const selectPlanet=(e) =>{
-setSelectedPlanet(e)
- }
- const togglePause=(e) =>{
-  setIsPaused(!isPaused)
-   }
-  
-   useEffect(() => {
+  useEffect(() => {
     if (controlsRef.current) {
       console.log("Zoom actuel :", controlsRef.current);
     }
@@ -71,97 +76,101 @@ setSelectedPlanet(e)
 
   return (
     <div className={styles.boxContainer}>
-      <Navbar/>
-      <PlanetFocus setFocus={setFocus} setSelectedPlanet={selectPlanet}/>
-      {!selectedPlanet &&
-      <Canvas
-        camera={{ position: [0, 50, 200], fov: 50, near: 1, far: 10000 }}
-        onPointerMissed={() => {
-          setSelectedPlanet(null);
-          setFocus(null);
-        }}
-      >
-        <Suspense fallback={null}>
-          <StarDome />
+      <Navbar />
+      <div className={styles.planetFocusContainer}>
+      <PlanetFocus setFocus={setFocus} setSelectedPlanet={selectPlanet} />
+      </div>
+      
+      {!selectedPlanet && (
+        <Canvas
+          camera={{ position: [0, 50, 200], fov: 50, near: 1, far: 10000 }}
+          onPointerMissed={() => {
+            setSelectedPlanet(null);
+            setFocus(null);
+          }}
+        >
+          <Suspense fallback={null}>
+            <StarDome />
 
-          <directionalLight
-            intensity={2}
-            position={[0, 100, 0]}
-            castShadow
-            shadow-mapSize-width={512}
-            shadow-mapSize-height={512}
-          />
-          <ambientLight intensity={0.5} />
+            <directionalLight
+              intensity={2}
+              position={[0, 100, 0]}
+              castShadow
+              shadow-mapSize-width={512}
+              shadow-mapSize-height={512}
+            />
+            <ambientLight intensity={0.5} />
 
-          {planets.map((planet, key) => (
-            planet.name === "Soleil" ? (
-              <Sun
-                key={key}
-                ref={sunRef}
-                name={planet.name}
-                size={10.9}
-                position={[0, 0, 0]}
-                color="yellow"
-                speed={0.001}
-                onClick={() => setSelectedPlanet(planet.name)}
-                emitsLight={true}
-                starTexture="/textures/2k_sun.jpg"
-                clock={clock}
-                elapsedTimeAtPause={elapsedTimeAtPause}
-                getplanetPosition={handlePlanetPosition}
-              />
-            ) : null
-          ))}
+            {planets.map((planet, key) =>
+              planet.name === "Soleil" ? (
+                <Sun
+                  key={key}
+                  ref={sunRef}
+                  name={planet.name}
+                  size={10.9}
+                  position={[0, 0, 0]}
+                  color="yellow"
+                  speed={0.001}
+                  onClick={() => setSelectedPlanet(planet.name)}
+                  emitsLight={true}
+                  starTexture="/textures/2k_sun.jpg"
+                  clock={clock}
+                  elapsedTimeAtPause={elapsedTimeAtPause}
+                  getplanetPosition={handlePlanetPosition}
+                />
+              ) : null
+            )}
 
-          {/* Trajectoires des planètes (orbites) uniquement pour la planète ciblée */}
-          {planets.map((planet, key) => (
-            planet.display && planet.orbitRadius ? 
+            {/* Trajectoires des planètes (orbites) uniquement pour la planète ciblée */}
+            {planets.map((planet, key) =>
+              planet.display && planet.orbitRadius ? (
                 <Orbit
                   key={`orbit-${key}`}
                   orbitRadius={planet.orbitRadius}
                   inclination={planet.inclination * (Math.PI / 180)}
                 />
-              
-             : null
-          ))}
+              ) : null
+            )}
 
-          
-          {/* Affichage des planètes */}
-          {planets.map((planet, key) => (
-            planet.display ? (
-         <>
-                {/* Si la planète est survolée, afficher un cercle autour */}
-                {focus === planet.name && hoveredPlanetPosition && (
-  <HighlightPlanet key={`highlight-${key}`} planet={planet} position={hoveredPlanetPosition} />
-)}
+            {/* Affichage des planètes */}
+            {planets.map((planet, key) =>
+              planet.display ? (
+                <>
+                  {/* Si la planète est survolée, afficher un cercle autour */}
+                  {focus === planet.name && hoveredPlanetPosition && (
+                    <HighlightPlanet
+                      key={`highlight-${key}`}
+                      planet={planet}
+                      position={hoveredPlanetPosition}
+                    />
+                  )}
 
-
-              <Planet
-                key={key}
-                name={planet.name}
-                size={planet.size}
-                position={planet.position}
-                getplanetPosition={handlePlanetPosition}
-                color={planet.color}
-                speed={planet.speed}
-                texture={planet.texture}
-                hasRings={planet.hasRings}
-                onClick={() => setSelectedPlanet(planet.name)}
-                satellites={planet.satellites}
-                sunRef={sunRef}
-                rotation={planet.rotation}
-                inclination={planet.inclination}
-                isPaused={isPaused}
-                clock={clock}
-                elapsedTimeAtPause={elapsedTimeAtPause}
-              />
-              </>
-            ) : null
-          ))}
-        </Suspense>
-        <OrbitControls ref={controlsRef} enableZoom={true} enablePan={true} />
-      </Canvas>
-      }
+                  <Planet
+                    key={key}
+                    name={planet.name}
+                    size={planet.size}
+                    position={planet.position}
+                    getplanetPosition={handlePlanetPosition}
+                    color={planet.color}
+                    speed={planet.speed}
+                    texture={planet.texture}
+                    hasRings={planet.hasRings}
+                    onClick={() => setSelectedPlanet(planet.name)}
+                    satellites={planet.satellites}
+                    sunRef={sunRef}
+                    rotation={planet.rotation}
+                    inclination={planet.inclination}
+                    isPaused={isPaused}
+                    clock={clock}
+                    elapsedTimeAtPause={elapsedTimeAtPause}
+                  />
+                </>
+              ) : null
+            )}
+          </Suspense>
+          <OrbitControls ref={controlsRef} enableZoom={true} enablePan={true} />
+        </Canvas>
+      )}
 
       {selectedPlanet && <PlanetViewer planet={selectedPlanetData} />}
       {selectedPlanet && (
@@ -208,10 +217,14 @@ setSelectedPlanet(e)
       )}
 
       {/**icône de  Boîte d'informations des planètes  **/}
-      {selectedPlanet && 
-      <div className={styles.infoBoxIcon} onClick={() => setDisplayInfoBox(!displayInfoBox)}>
-        <InfosBoxIcon />
-      </div>}
+      {selectedPlanet && (
+        <div
+          className={styles.infoBoxIcon}
+          onClick={() => setDisplayInfoBox(!displayInfoBox)}
+        >
+          <InfosBoxIcon />
+        </div>
+      )}
     </div>
   );
 }

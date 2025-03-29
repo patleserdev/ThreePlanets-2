@@ -50,6 +50,15 @@
   animation: slide-right-infoBox 0.5s cubic-bezier(0.680, -0.550, 0.265, 1.550) forwards;
 }
 
+.planetFocusContainer
+{
+  position: absolute;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+}
+
 @keyframes slide-right-infoBox {
   0% {
             transform: translateX(-30rem);
@@ -106,6 +115,7 @@
   align-items: center;
   justify-content: flex-end;
   display: flex;
+  border: 1px solid red;
 }
 
 .IconContainer>div {

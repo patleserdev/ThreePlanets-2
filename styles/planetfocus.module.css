@@ -1,5 +1,13 @@
 
 /** affichage des planètes à cibler et animation d'affichage**/
+.planetFocusContainer
+{
+position: relative;
+height: 100%;
+width: 100%;
+padding: 1rem;
+}
+
 .planetFocus {
   position: absolute;
   bottom: 4rem;

@@ -8,7 +8,7 @@ export default function PlanetFocus({ setFocus,setSelectedPlanet }) {
     
 
     return (
-        <>
+        <div className={styles.planetFocusContainer}>
             <div className={`${styles.planetFocus} ${displayPlanetsChoice ? styles.slideRight : styles.slideLeft}`}>
                 <h3>Cibler une planète :</h3>
                 {planets.map((planet, i) => (
@@ -27,6 +27,6 @@ export default function PlanetFocus({ setFocus,setSelectedPlanet }) {
             <div className={styles.planetFocusIcon} onClick={() => setDisplayPlanetsChoice(!displayPlanetsChoice)}>
                 <PlanetsIcon />
             </div>
-        </>
+        </div>
     );
 }
