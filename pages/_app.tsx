@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar.js";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { useState,useEffect} from "react"
+import { Analytics } from "@vercel/analytics/react"
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -10,6 +11,8 @@ export default function App({ Component, pageProps }: AppProps) {
   <main>
     <Navbar/>
     <Component {...pageProps} />
+    <Analytics />
+
   </main> 
   )
 }
