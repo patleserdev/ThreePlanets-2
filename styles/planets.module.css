@@ -138,6 +138,7 @@ list-style-type: none;
   color:#fff;
   border: 1px solid white;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .displayPlanet

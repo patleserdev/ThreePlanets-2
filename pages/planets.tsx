@@ -1,8 +1,4 @@
 import styles from "@/styles/planets.module.css";
-import SolarSystem from "@/components/SolarSystem.js";
-import Image from "next/image.js";
-import Link from "next/link.js";
-import Navbar from "@/components/Navbar.js";
 import planets from "@/datas/planets.js";
 import PlanetViewer from "@/components/PlanetViewer.js";
 import { useState } from "react";
