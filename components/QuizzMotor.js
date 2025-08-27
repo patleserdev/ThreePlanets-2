@@ -4,31 +4,29 @@ import CircleLoader from "react-spinners/ClipLoader";
 
 // Fonction pour comparer les réponses de l'utilisateur avec les réponses correctes
 function compareAnswers(userResponses, datas) {
-    let results = [];
-    let correctCount = 0;
+  let results = [];
+  let correctCount = 0;
 
-    userResponses.forEach((response, index) => {
-        const correctAnswer = datas[index].answer;
-        const isCorrect = response === correctAnswer;
-        results.push(isCorrect);
-        if (isCorrect) correctCount++;
-    });
+  userResponses.forEach((response, index) => {
+    const correctAnswer = datas[index].answer;
+    const isCorrect = response === correctAnswer;
+    results.push(isCorrect);
+    if (isCorrect) correctCount++;
+  });
 
-    return {
-        results, // Tableau des réponses correctes (true/false)
-        correctCount // Nombre total de réponses correctes
-    };
+  return {
+    results, // Tableau des réponses correctes (true/false)
+    correctCount, // Nombre total de réponses correctes
+  };
 }
-
-
 
 export default function QuizzMotor({ datas, control }) {
   const [step, setStep] = useState(0);
   const [question, setQuestion] = useState(0);
   const [userResponses, setUserResponses] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [results,setResults]=useState(null)
-  const [note,setNote]=useState(0)
+  const [results, setResults] = useState(null);
+  const [note, setNote] = useState(0);
   //système de step
   //start
   //a chaque question, je valide une réponse, elle s'ajoute a stateresponses,
@@ -42,7 +40,7 @@ export default function QuizzMotor({ datas, control }) {
   /** Gère les comportements au changement de control */
   useEffect(() => {
     if (control == 0) {
- restartQuizz()
+      restartQuizz();
     }
 
     if (control == 1) {
@@ -56,15 +54,14 @@ export default function QuizzMotor({ datas, control }) {
     }
   }, [control]);
 
-  const restartQuizz=()=>{
+  const restartQuizz = () => {
     setStep(0);
-    setUserResponses([])
-    setQuestion(0)
-    setLoading(false)
-    setResults(null)
-    setNote(0)
-    
-  }
+    setUserResponses([]);
+    setQuestion(0);
+    setLoading(false);
+    setResults(null);
+    setNote(0);
+  };
 
   /** Gère les comportements à chaque changement d'étape */
   useEffect(() => {
@@ -83,20 +80,14 @@ export default function QuizzMotor({ datas, control }) {
     // calcul du nombre de bonnes réponses par rapport au tableaux de données
     //comparer userResponses a datas[X].response
     //result = nb de bonnes réponses /nb de questions
-    if(step === 4)
-        {
-         
-            const comparison = compareAnswers(userResponses, datas);
-            console.log(comparison)
-            if(comparison)
-            {
-                setResults(comparison.results)
-                setNote(comparison.correctCount)
-            }
-          
-           
-            
-        }
+    if (step === 4) {
+      const comparison = compareAnswers(userResponses, datas);
+      console.log(comparison);
+      if (comparison) {
+        setResults(comparison.results);
+        setNote(comparison.correctCount);
+      }
+    }
   }, [step]);
 
   /**
@@ -119,8 +110,8 @@ export default function QuizzMotor({ datas, control }) {
     }
   };
 
-  console.log(userResponses)
-  console.log(results)
+  console.log(userResponses);
+  console.log(results);
   // gère la fin des questions
   useEffect(() => {
     if (question == datas.length + 1) {
@@ -141,21 +132,37 @@ export default function QuizzMotor({ datas, control }) {
         <>
           <h2>Question {question}</h2>
           <h3>{datas[question - 1]?.question}</h3>
-
-          {datas[question - 1]?.choices?.map((choice, key) => {
-            return (
-              <div key={key}>
-                <input
-                  type="radio"
-                  id={`q${question}-option${key}`}
-                  name={`question${question}`}
-                  value={key}
+          <div className={styles.QuizzMotorQuestion}>
+            {/* Question image */}
+            {datas[question - 1]?.type === "image" && (
+              <div>
+                <img
+                  src={datas[question - 1]?.image}
+                  alt="Illustration de la question"
+                  style={{
+                    maxWidth: "400px",
+                    borderRadius: "8px",
+                    margin: "auto",
+                  }}
                 />
-                <label htmlFor={key}>{choice}</label>
-                <br></br>
               </div>
-            );
-          })}
+            )}
+
+            {datas[question - 1]?.choices?.map((choice, key) => {
+              return (
+                <div key={key}>
+                  <input
+                    type="radio"
+                    id={`q${question}-option${key}`}
+                    name={`question${question}`}
+                    value={key}
+                  />
+                  <label htmlFor={key}>{choice}</label>
+                  <br></br>
+                </div>
+              );
+            })}
+          </div>
 
           <button onClick={() => nextQuestion()} className={styles.button}>
             Question suivante
@@ -167,22 +174,25 @@ export default function QuizzMotor({ datas, control }) {
 
       {step == 4 && (
         <>
-          <h3>Ton résultat : {note}/ {datas.length}</h3>
-    <ul>
-    {note && datas.map((data,key) => <li key={key}><div>Question {key+1}</div> <div>{data.answer && data.answer == userResponses[key] ? "✅" : "❌"}</div></li>)}
-
-    </ul>
+          <h3>
+            Ton résultat : {note}/ {datas.length}
+          </h3>
+          <ul>
+            {datas.map((data, key) => (
+              <li key={key}>
+                <div>Question {key + 1}</div>{" "}
+                <div>{data.answer == userResponses[key] ? "✅" : "❌"}</div>
+              </li>
+            ))}
+          </ul>
         </>
       )}
 
       {loading && (
         <div className={styles.loader}>
-        <CircleLoader size={25} color={"#ffffff"} speedMultiplier={1} />
+          <CircleLoader size={25} color={"#ffffff"} speedMultiplier={1} />
         </div>
       )}
-   
-
-
     </div>
   );
 }

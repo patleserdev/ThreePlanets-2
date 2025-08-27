@@ -38,7 +38,7 @@ export default function Navbar()
         </div>
 
         <div className={styles.mobile}>
-        <div style={{width:36,height:36}} onClick={()=>handleClick()}><BurgerIcon/></div>
+        <div style={{width:30,height:30}} onClick={()=>handleClick()}><BurgerIcon/></div>
         </div>
         <div className={open ? styles.toggleOpen : styles.toggleClose  }>
        { open && <div> <ul>

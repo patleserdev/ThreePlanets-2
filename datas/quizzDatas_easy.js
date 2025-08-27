@@ -1,9 +1,17 @@
     const quizzDatas = [
         { 
+            type: "text", // question classique
             question: "Quelle planète est la plus proche du Soleil ?", 
             choices: ["Terre", "Mercure", "Mars"],
             answer: 1
         },
+        { 
+            type: "image", // question avec une image
+            image: "https://images.pexels.com/photos/7527862/pexels-photo-7527862.jpeg", // chemin vers ton image
+            question: "Quelle planète correspond à cette image ?", 
+            choices: ["Mars", "Jupiter", "Vénus"],
+            answer: 0
+          },
         { 
             question: "Quelle planète est toute rouge ?", 
             choices: ["Jupiter", "Mars", "Vénus"],
