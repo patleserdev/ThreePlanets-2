@@ -1,3 +1,4 @@
+"use client";
 import styles from "@/styles/planets.module.css";
 import planets from "@/datas/planets.js";
 import PlanetViewer from "@/components/PlanetViewer.js";
@@ -15,74 +16,112 @@ interface PlanetInterface {
   texture?: string;
   hasRings?: boolean;
   display?: boolean;
-  orbitRadius?: number ;  // Optionnel si tu ne veux pas toujours fournir cette propriété
-  emitsLight?: boolean;  // Optionnel
+  orbitRadius?: number;
+  emitsLight?: boolean;
   satellites?: { distance: number; size: number; speed: number; texture: string }[];
-  // Optionnel
-  temperature?: number;  // Optionnel
-  sunDistanceKms?:number;
-  sunDistanceUA?:number;
-  planetSize?:number;
+  temperature?: number;
+  sunDistanceKms?: number;
+  sunDistanceUA?: number;
+  planetSize?: number;
 }
 
+const StatCard = ({ label, value }: { label: string; value: string }) => (
+  <div className={styles.statCard}>
+    <span className={styles.statLabel}>{label}</span>
+    <span className={styles.statValue}>{value}</span>
+  </div>
+);
 
 const planetsPage = () => {
+  const [selectedPlanet, setSelectedPlanet] = useState<PlanetInterface | null>(null);
+  const displayPlanets = planets.filter((p) => p.display);
 
-  const [selectedPlanet,setSelectedPlanet]=useState<PlanetInterface| null>(null)
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.overlay}>
-       
+          <div className={styles.inner}>
 
-          <h1>Les planètes</h1>
-          <h2>Découvre les planètes qui entourent notre Terre !</h2>
-          <div className={styles.planetCarousel}>
-            <div className={styles.planetList}>
-              <ul>
-                {planets.map((planet,key) => (
-                  planet.display ?
-                  <li key={key} onClick={() => { 
-                    setSelectedPlanet(planet as unknown  as PlanetInterface);
-                  }}>{planet.name}</li> :null
-                ))}
-              </ul>
+            {/* ── Header ── */}
+            <div className={styles.header}>
+              <span className={styles.badge}>🪐 Système Solaire</span>
+              <h1 className={styles.title}>
+                Les <span className={styles.gradient}>Planètes</span>
+              </h1>
+              <p className={styles.subtitle}>
+                Sélectionne une planète pour explorer ses données
+              </p>
             </div>
 
-            <div className={styles.displayPlanet}>
-              {!selectedPlanet && <h2>Sélectionnez une planète</h2>}
+            {/* ── Main layout ── */}
+            <div className={styles.layout}>
 
-              {selectedPlanet && <div className={styles.displayPlanetContentText}>
-                <h2>{selectedPlanet ? selectedPlanet.name : "Planète non sélectionée"}</h2>
-                <ul>
-                  <li>
-                    Taille : {selectedPlanet ? selectedPlanet.planetSize + " kms" : "Non précisé"}
-                  </li>
-                  <li>
-                    Couleur dominante : {selectedPlanet ? selectedPlanet.color : "Non précisé"}
-                  </li>
-                  <li>
-                  Anneaux : {selectedPlanet && selectedPlanet.hasRings ? "OUI" : "Non"}
-                  </li>
-                  <li>
-                    Distance du soleil : &nbsp;
-                    {selectedPlanet && selectedPlanet.sunDistanceKms ? selectedPlanet.sunDistanceKms + " kms" : "Non précisé"} 
-                    &nbsp;/&nbsp;
-                    {selectedPlanet && selectedPlanet.sunDistanceUA ? selectedPlanet.sunDistanceUA + " UA" : "Non précisé"}
-
-                  </li>
-                  <li>
-                    Température moyenne : {selectedPlanet && selectedPlanet.temperature ? `${selectedPlanet.temperature}°c` : "Non précisé"}
-                  </li>
+              {/* Sidebar */}
+              <nav className={styles.sidebar}>
+                <ul className={styles.planetList}>
+                  {displayPlanets.map((planet, key) => (
+                    <li
+                      key={key}
+                      className={`${styles.planetItem} ${selectedPlanet?.name === planet.name ? styles.planetItemActive : ""}`}
+                      onClick={() => setSelectedPlanet(planet as unknown as PlanetInterface)}
+                    >
+                      <span className={styles.planetName}>{planet.name}</span>
+                      <span className={styles.planetArrow}>→</span>
+                    </li>
+                  ))}
                 </ul>
+              </nav>
 
-                {selectedPlanet && selectedPlanet.infos ? selectedPlanet.infos.map((info) => <p>{info}</p>) : null}
-                </div>}
+              {/* Detail panel */}
+              <div className={styles.detail}>
+                {!selectedPlanet ? (
+                  <div className={styles.emptyState}>
+                    <div className={styles.emptyOrbit}>
+                      <div className={styles.emptyOrbitRing} />
+                      <div className={styles.emptyOrbitCore} />
+                    </div>
+                    <p className={styles.emptyText}>
+                      Sélectionnez une planète pour découvrir ses secrets
+                    </p>
+                  </div>
+                ) : (
+                  <div className={styles.planetDetail}>
+                    <div className={styles.detailTop}>
 
-                <div className={styles.displayPlanetContent3D}>
-                  {selectedPlanet && <PlanetViewer planet={selectedPlanet}/>}
-                </div> 
-            </div> 
+                      {/* Meta + stats */}
+                      <div className={styles.detailMeta}>
+                        <div>
+                          <h2 className={styles.detailName}>{selectedPlanet.name}</h2>
+                          {selectedPlanet.color && (
+                            <span className={styles.detailTag}>{selectedPlanet.color}</span>
+                          )}
+                        </div>
+
+                        <div className={styles.statsGrid}>
+                          <StatCard label="Diamètre" value={selectedPlanet.planetSize ? `${selectedPlanet.planetSize.toLocaleString()} km` : "—"} />
+                          <StatCard label="Distance Soleil" value={selectedPlanet.sunDistanceUA ? `${selectedPlanet.sunDistanceUA} UA` : "—"} />
+                          <StatCard label="Température" value={selectedPlanet.temperature ? `${selectedPlanet.temperature}°C` : "—"} />
+                          <StatCard label="Anneaux" value={selectedPlanet.hasRings ? "Oui" : "Non"} />
+                        </div>
+
+                        {selectedPlanet.infos && selectedPlanet.infos.length > 0 && (
+                          <div className={styles.infoSection}>
+                            {selectedPlanet.infos.map((info, i) => (
+                              <p key={i} className={styles.infoText}>{info}</p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* 3D viewer */}
+                      <div className={styles.viewer3D}>
+                        <PlanetViewer planet={selectedPlanet} />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

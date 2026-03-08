@@ -1,370 +1,401 @@
+/* ─── Container ──────────────────────────────────────────── */
 .container {
-  background-color: rgb(46, 46, 45);
   height: 100vh;
   width: 100%;
-  z-index: 1;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-
-.content
-{
+.content {
   height: 100vh;
   width: 100%;
   background-image: url("/pictures/banner.webp");
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-
 }
 
-.overlay
-{
-  padding-top: 8vh;
+.overlay {
   width: 100%;
-   height: 100vh;
-  background-color: rgb(0, 0, 0,0.5);
-}
-
-.content h1 {
-  padding-top: 1rem;
-  padding-left:2rem;
-  color: #fff;
-  font-size: 300%;
-  font-weight: 700;
-  text-shadow: 5px 5px 20px black;
-}
-
-.content h2 {
-  padding-left:3rem;
-  color: #fff;
-  font-size: 150%;
-  text-shadow: 5px 5px 20px black;
-}
-
-.content h3 {
-  padding-left:4rem;
-  color: #fff;
-  font-size: 150%;
-  text-shadow: 5px 5px 20px black;
-}
-
-.content p {
-  padding-top: 1rem;
-  padding-left:5rem;
-  color: #fff;
-  font-size: 120%;
-  line-height: 1.9;
-  width: 60%;
-  text-shadow: 1px 1px 10px black;
-}
-
-.content > ul {
-  padding-top: 1rem;
-  padding-left:5rem;
-  color: #fff;
-  font-size: 120%;
-  line-height: 1.9;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  gap: 10
-}
-
-.content  ul  li {
-
-color: white;
-padding-top: 0.5rem;
-padding-left:5rem;
-color: white;
-display: flex;
-flex-direction: row;
-}
-
-
-.cta {
-  padding-top: 3rem;
-  padding-bottom: 2rem;
-  margin-left: 10rem;
-}
-
-.cta > a {
-  margin: 1rem;
-  margin-left: 10rem;
-  border: 1px solid white;
-  padding: 1rem;
-  transition: 0.5s all;
-  color:white;
-}
-
-.cta>a:hover {
-  background-color: #fff;
-  color: #000;
-}
-
-.planetCarousel
-{
-  padding: 2rem;
-  display: flex;
-  flex-direction: row;
-  gap:10;
-  justify-content: space-between;
-}
-
-.planetList
-{
-
-width: 10rem;
-
-}
-
-.planetList > ul
-{
-margin: 0;
-padding: 0;
-list-style-type: none;
-}
-
-.planetList > ul > li
-{
-  padding-top: 0;
-  padding: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
- margin-bottom: 0.5rem;
-  color:#fff;
-  border: 1px solid white;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.displayPlanet
-{
-  background-color: rgba(0,0,0,0.5);
-  padding: 1rem;
-  border:1px solid white;
-  width: 90%;
-  min-height: 100%;
-  border-top-right-radius: 12;
-  border-bottom-right-radius: 12;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.displayPlanet h2,.displayPlanet ul,.displayPlanet ul li,.displayPlanet p
-{
-  padding:0;
-  padding-left: 1rem;
-  padding-top: 0.5rem;
-  width: 100%;
-  padding-right: 1rem;
-}
-
-.displayPlanetContent3D
-{
-  overflow: hidden;
   height: 100%;
-  width: 50%;
-  border-radius: 12;
-}
-
-@media (min-width: 479px) and (max-width: 959px) 
-{
-
-
-}
-
-@media (max-width: 478px) 
-{
-
-  .container {
-    background-color: rgb(46, 46, 45);
-    height: 200vh;
-    width: 100%;
-    z-index: 1;
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-  }
-  
-  
-  .content
-  {
-    height: 200vh;
-    width: 100%;
-    background-image: url("/pictures/banner.webp");
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-direction: column;
-  
-  }
-  
-  .overlay
-  {
-    padding-top: 15vh;
-    width: 100%;
-    height: 200vh;
-    background-color: rgb(0, 0, 0,0.5);
-  }
-  
-  .content h1 {
-    padding-top: 1rem;
-    padding-right: 1rem;
-    padding-left:1rem;
-    font-size: 230%;
-  }
-  
-  .content h2 {
-    padding-left:1rem;
-    color: #fff;
-    font-size: 180%;
-    padding-right: 1rem;
-  }
-  
-  .content h3 {
-    padding-top: 2rem;
-    padding-left:1rem;
-    font-size: 120%;
-    padding-right: 1rem;
-  }
-  
-  .content p {
-    padding-top: 1rem;
-    padding-left:1rem;
-    padding-right: 1rem;
-    color: #fff;
-    font-size: 120%;
-    line-height: 1.9;
-    width: 100%;
-
-  }
-  
-  .content > ul {
-    padding-top: 1rem;
-    padding-left:5rem;
-    color: #fff;
-    font-size: 120%;
-    line-height: 1.9;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 10
-  }
-  
-  .content  ul  li {
-  
-  color: white;
-  padding-top: 0.5rem;
-  padding-left:1rem;
-  color: white;
+  background: linear-gradient(
+    105deg,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.75) 55%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
   display: flex;
-  flex-direction: row;
-  }
-  
-  
-  .cta {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-    margin-left: 10rem;
-  }
-  
-  .cta > a {
-    margin: 1rem;
-    margin-left: 10rem;
-    border: 1px solid white;
-    padding: 1rem;
-    transition: 0.5s all;
-    color:white;
-  }
-  
-  .cta>a:hover {
-    background-color: #fff;
-    color: #000;
-  }
-  
-  .planetCarousel
-  {
-    padding: 0rem;
-    display: flex;
-    flex-direction: column;
-    gap:0;
-    justify-content: space-between;
-  }
-  
-  .planetList
-  {
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+/* ─── Inner wrapper ──────────────────────────────────────── */
+.inner {
+  padding: 100px 5vw 3rem;
   width: 100%;
   display: flex;
-  flex-direction: row;
-padding-top: 2rem;
-  }
-  
-  .planetList > ul
-  {
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ─── Badge — identique index ─────────────────────────────── */
+.badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f49f16;
+  border: 1px solid rgba(244, 159, 22, 0.4);
+  background: rgba(244, 159, 22, 0.08);
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+/* ─── Titre — identique index ─────────────────────────────── */
+.title {
+  font-family: "Boldonse", sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.8);
+  margin: 0;
+}
+
+.gradient {
+  background: linear-gradient(to right, #6fd868, #fccd4d, #f49f16, #f56b1e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Sous-titre — identique index ────────────────────────── */
+.subtitle {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+/* ─── Layout principal ───────────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* ─── Sidebar ────────────────────────────────────────────── */
+.sidebar {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  backdrop-filter: blur(8px);
+}
+
+.planetList {
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style-type: none;
-  width: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.planetItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.planetItem:hover {
+  background: rgba(244, 159, 22, 0.08);
+  border-left-color: rgba(244, 159, 22, 0.5);
+}
+
+.planetItemActive {
+  background: rgba(244, 159, 22, 0.12);
+  border-left-color: #f49f16;
+}
+
+.planetName {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.03em;
+  transition: color 0.15s;
+}
+
+.planetItem:hover .planetName,
+.planetItemActive .planetName {
+  color: #fff;
+}
+
+.planetArrow {
+  font-size: 0.75rem;
+  color: rgba(244, 159, 22, 0.6);
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.planetItem:hover .planetArrow,
+.planetItemActive .planetArrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: #f49f16;
+}
+
+/* ─── Detail panel ───────────────────────────────────────── */
+.detail {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  min-height: 460px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap:10;
-  margin-bottom: 2rem;
-  }
-  
-  .planetList > ul > li
-  {
-    width: 40%;
-    padding-top: 0;
-    padding: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-   margin-bottom: 0.5rem;
-    color:#fff;
-    border: 1px solid white;
-    text-transform: uppercase;
-  }
-  
-  .displayPlanet
-  {
-    background-color: rgba(0,0,0,0.5);
-    padding: 0rem;
-    border:none;
-    width: 100%;
-    min-height: 100%;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding-top: 1;
-  }
-  
-  .displayPlanet h2,.displayPlanet ul,.displayPlanet ul li,.displayPlanet p
-  {
-    padding:0;
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    width: 100%;
-    padding-right: 1rem;
-  }
-  
-  .displayPlanetContent3D
-  {
-    padding-top: 2rem;
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+}
 
+/* ─── Empty state ────────────────────────────────────────── */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  opacity: 0.45;
+}
+
+.emptyOrbit {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyOrbitRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(244, 159, 22, 0.6);
+  animation: spin 5s linear infinite;
+}
+
+.emptyOrbitCore {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(244, 159, 22, 0.5);
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.emptyText {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  max-width: 200px;
+  line-height: 1.6;
+}
+
+/* ─── Planet detail ──────────────────────────────────────── */
+.planetDetail {
+  width: 100%;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.detailTop {
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.detailMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.detailName {
+  font-family: "Boldonse", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+}
+
+.detailTag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #f49f16;
+  border: 1px solid rgba(244, 159, 22, 0.4);
+  background: rgba(244, 159, 22, 0.08);
+  padding: 0.2rem 0.7rem;
+  border-radius: 100px;
+  margin-top: 0.4rem;
+}
+
+/* ─── Stats grid ─────────────────────────────────────────── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.statCard:hover {
+  border-color: rgba(244, 159, 22, 0.35);
+  background: rgba(244, 159, 22, 0.06);
+}
+
+.statLabel {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.statValue {
+  font-size: 0.95rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ─── Info texts ─────────────────────────────────────────── */
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 2px solid rgba(244, 159, 22, 0.35);
+  padding-left: 1rem;
+}
+
+.infoText {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ─── 3D Viewer ──────────────────────────────────────────── */
+.viewer3D {
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* ─── Responsive tablette ────────────────────────────────── */
+@media (max-width: 960px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    padding: 0.75rem;
+  }
+
+  .planetList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .planetItem {
+    border-left: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    padding: 0.45rem 0.85rem;
+  }
+
+  .planetItemActive {
+    border-color: #f49f16;
+  }
+
+  .planetArrow { display: none; }
+
+  .detailTop {
+    grid-template-columns: 1fr;
+  }
+
+  .viewer3D {
+    height: 280px;
+  }
+}
+
+/* ─── Responsive mobile ──────────────────────────────────── */
+@media (max-width: 478px) {
+  .container,
+  .content {
+    height: 100svh;
     overflow: hidden;
-    height: 60vh;
-    width: 100%;
-    border-radius: 0;
+  }
+
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.92) 100%
+    );
+  }
+
+  .inner {
+    padding: 80px 1.25rem 2rem;
+    gap: 1.2rem;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .planetDetail {
+    padding: 1rem;
+  }
+
+  .viewer3D {
+    height: 220px;
   }
 }

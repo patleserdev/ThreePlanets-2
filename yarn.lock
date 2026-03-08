@@ -261,16 +261,16 @@
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@react-three/drei@^10.0.3":
-  version "10.0.6"
-  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-10.0.6.tgz#c81e97c32c7455fa237e2512b989dc8c88a27310"
-  integrity sha512-QtiAv/a1BaP+ZYfp8BphV8BMSO0O1BNhIPye3Zqm5iDqgX6JeiknPR6f2UmzUdBfPLwjZEaqjfULgJFvTUWgkg==
+"@react-three/drei@^10.7.7":
+  version "10.7.7"
+  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-10.7.7.tgz#7ac029ace001307dfc71c61b6284b1c12efe8b80"
+  integrity sha512-ff+J5iloR0k4tC++QtD/j9u3w5fzfgFAWDtAGQah9pF2B1YgOq/5JxqY0/aVoQG5r3xSZz0cv5tk2YuBob4xEQ==
   dependencies:
     "@babel/runtime" "^7.26.0"
     "@mediapipe/tasks-vision" "0.10.17"
     "@monogrid/gainmap-js" "^3.0.6"
     "@use-gesture/react" "^10.3.1"
-    camera-controls "^2.9.0"
+    camera-controls "^3.1.0"
     cross-env "^7.0.3"
     detect-gpu "^5.0.56"
     glsl-noise "^0.0.0"
@@ -282,26 +282,24 @@
     suspend-react "^0.1.3"
     three-mesh-bvh "^0.8.3"
     three-stdlib "^2.35.6"
-    troika-three-text "^0.52.0"
+    troika-three-text "^0.52.4"
     tunnel-rat "^0.1.2"
     use-sync-external-store "^1.4.0"
     utility-types "^3.11.0"
     zustand "^5.0.1"
 
-"@react-three/fiber@^9.0.4":
-  version "9.1.2"
-  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-9.1.2.tgz#c988f3aa916f64771483784ca3bb6ba4b116395e"
-  integrity sha512-k8FR9yVHV9kIF3iuOD0ds5hVymXYXfgdKklqziBVod9ZEJ8uk05Zjw29J/omU3IKeUfLNAIHfxneN3TUYM4I2w==
+"@react-three/fiber@^9.5.0":
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-9.5.0.tgz#12bcccdd60949c39ffea53213bf26167e4c2932d"
+  integrity sha512-FiUzfYW4wB1+PpmsE47UM+mCads7j2+giRBltfwH7SNhah95rqJs3ltEs9V3pP8rYdS0QlNne+9Aj8dS/SiaIA==
   dependencies:
     "@babel/runtime" "^7.17.8"
-    "@types/react-reconciler" "^0.28.9"
     "@types/webxr" "*"
     base64-js "^1.5.1"
     buffer "^6.0.3"
     its-fine "^2.0.0"
-    react-reconciler "^0.31.0"
     react-use-measure "^2.1.7"
-    scheduler "^0.25.0"
+    scheduler "^0.27.0"
     suspend-react "^0.1.3"
     use-sync-external-store "^1.4.0"
     zustand "^5.0.3"
@@ -562,10 +560,10 @@ camelcase-css@^2.0.1:
   resolved "https://registry.yarnpkg.com/camelcase-css/-/camelcase-css-2.0.1.tgz#ee978f6947914cc30c6b44741b6ed1df7f043fd5"
   integrity sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==
 
-camera-controls@^2.9.0:
-  version "2.10.1"
-  resolved "https://registry.yarnpkg.com/camera-controls/-/camera-controls-2.10.1.tgz#78bc58001a2d5925c29312154ce77d16967dec56"
-  integrity sha512-KnaKdcvkBJ1Irbrzl8XD6WtZltkRjp869Jx8c0ujs9K+9WD+1D7ryBsCiVqJYUqt6i/HR5FxT7RLASieUD+Q5w==
+camera-controls@^3.1.0:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/camera-controls/-/camera-controls-3.1.2.tgz#fb504fa77ade929aa75c22ba42d0b53f48a81e44"
+  integrity sha512-xkxfpG2ECZ6Ww5/9+kf4mfg1VEYAoe9aDSY+IwF0UEs7qEzwy0aVRfs2grImIECs/PoBtWFrh7RXsQkwG922JA==
 
 caniuse-lite@^1.0.30001579:
   version "1.0.30001713"
@@ -1821,13 +1819,6 @@ react-markdown@^9.0.3:
     unist-util-visit "^5.0.0"
     vfile "^6.0.0"
 
-react-reconciler@^0.31.0:
-  version "0.31.0"
-  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.31.0.tgz#6b7390fe8fab59210daf523d7400943973de1458"
-  integrity sha512-7Ob7Z+URmesIsIVRjnLoDGwBEG/tVitidU0nMsqX/eeJaLY89RISO/10ERe0MqmzuKUUB1rmY+h1itMbUHg9BQ==
-  dependencies:
-    scheduler "^0.25.0"
-
 react-spinners@^0.15.0:
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.15.0.tgz#bb9536a3839ab4e1513bb98847d79cc1fc930b93"
@@ -1930,15 +1921,15 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
-scheduler@^0.25.0:
-  version "0.25.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.25.0.tgz#336cd9768e8cceebf52d3c80e3dcf5de23e7e015"
-  integrity sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==
-
 scheduler@^0.26.0:
   version "0.26.0"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.26.0.tgz#4ce8a8c2a2095f13ea11bf9a445be50c555d6337"
   integrity sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==
+
+scheduler@^0.27.0:
+  version "0.27.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.27.0.tgz#0c4ef82d67d1e5c1e359e8fc76d3a87f045fe5bd"
+  integrity sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==
 
 section-matter@^1.0.0:
   version "1.0.0"
@@ -2208,10 +2199,10 @@ three@^0.170.0:
   resolved "https://registry.yarnpkg.com/three/-/three-0.170.0.tgz#6087f97aab79e9e9312f9c89fcef6808642dfbb7"
   integrity sha512-FQK+LEpYc0fBD+J8g6oSEyyNzjp+Q7Ks1C568WWaoMRLW+TkNNWmenWeGgJjV105Gd+p/2ql1ZcjYvNiPZBhuQ==
 
-three@^0.174.0:
-  version "0.174.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.174.0.tgz#53f46d6fd27515231b2af321f798f1e0ecf3f905"
-  integrity sha512-p+WG3W6Ov74alh3geCMkGK9NWuT62ee21cV3jEnun201zodVF4tCE5aZa2U122/mkLRmhJJUQmLLW1BH00uQJQ==
+three@^0.183.2:
+  version "0.183.2"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.183.2.tgz#606e3195bf210ef8d1eaaca2ab8c59d92d2bbc18"
+  integrity sha512-di3BsL2FEQ1PA7Hcvn4fyJOlxRRgFYBpMTcyOgkwJIaDOdJMebEFPA+t98EvjuljDx4hNulAGwF6KIjtwI5jgQ==
 
 to-regex-range@^5.0.1:
   version "5.0.1"
@@ -2225,7 +2216,7 @@ trim-lines@^3.0.0:
   resolved "https://registry.yarnpkg.com/trim-lines/-/trim-lines-3.0.1.tgz#d802e332a07df861c48802c04321017b1bd87338"
   integrity sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==
 
-troika-three-text@^0.52.0:
+troika-three-text@^0.52.4:
   version "0.52.4"
   resolved "https://registry.yarnpkg.com/troika-three-text/-/troika-three-text-0.52.4.tgz#f7b2389a2067d9506a5757457771cf4f6356e738"
   integrity sha512-V50EwcYGruV5rUZ9F4aNsrytGdKcXKALjEtQXIOBfhVoZU9VAqZNIoGQ3TMiooVqFAbR1w15T+f+8gkzoFzawg==

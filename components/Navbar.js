@@ -1,65 +1,100 @@
-import Image from "next/image.js"
-import styles from "../styles/navbar.module.css"
-import Link from "next/link.js"
-import { useState } from "react";
-import BurgerIcon from "./BurgerIcon";
+import Image from "next/image.js";
+import styles from "../styles/navbar.module.css";
+import Link from "next/link.js";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
-export default function Navbar()
-{
+const NAV_LINKS = [
+  { href: "/", label: "Accueil" },
+  { href: "/map", label: "Carte du système" },
+  { href: "/planets", label: "Les planètes" },
+  { href: "/quizz", label: "Quizz" },
+];
 
+export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const handleClick = () => {
-    setOpen(!open);
-  };
+  const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
 
-    return (
-        <nav className={styles.navbar}>
-            <Image src={"/pictures/logo.png"} alt="logo" width={100} height={100} className={styles.logo}/>
-          <div className={styles.title}>
-          <p>Three-Planets 2</p>
-          </div>
-        
-        <div className={styles.desktop}>
-        <ul>
-          <li>
-            <Link href="/">Accueil</Link>
-          </li>
-          <li>
-            <Link href="/map">Carte du système</Link>
-          </li>
-          <li>
-            <Link href="/planets">Les planètes</Link>
-          </li>
-          <li>
-            <Link href="/quizz">Quizz</Link>
-          </li>
+  // Ferme le menu mobile au changement de route
+  useEffect(() => {
+    setOpen(false);
+  }, [router.pathname]);
+
+  // Backdrop blur renforcé au scroll
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Empêche le scroll quand le menu mobile est ouvert
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  return (
+    <>
+      <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
+        {/* Logo */}
+        <div className={styles.logoWrapper}>
+          <Image
+            src="/pictures/logo.png"
+            alt="logo"
+            width={52}
+            height={52}
+            className={styles.logo}
+          />
+        </div>
+
+        {/* Titre */}
+        <div className={styles.title}>
+          <span>Three-Planets 2</span>
+        </div>
+
+        {/* Liens desktop */}
+        <ul className={styles.desktopNav}>
+          {NAV_LINKS.map(({ href, label }) => (
+            <li key={href} className={router.pathname === href ? styles.active : ""}>
+              <Link href={href}>
+                <span className={styles.linkInner}>{label}</span>
+              </Link>
+            </li>
+          ))}
         </ul>
-        
-        </div>
 
-        <div className={styles.mobile}>
-        <div style={{width:30,height:30}} onClick={()=>handleClick()}><BurgerIcon/></div>
-        </div>
-        <div className={open ? styles.toggleOpen : styles.toggleClose  }>
-       { open && <div> <ul>
-          <li>
-            <Link onClick={handleClick} href="/">Accueil</Link>
-          </li>
-          <li>
-            <Link onClick={handleClick} href="/map">Carte du système</Link>
-          </li>
-          <li>
-            <Link onClick={handleClick} href="/planets">Les planètes</Link>
-          </li>
-          <li>
-            <Link onClick={handleClick} href="/quizz">Quizz</Link>
-          </li>
-        </ul></div> }
-        
-        </div>
-        
-
+        {/* Burger mobile */}
+        <button
+          className={`${styles.burger} ${open ? styles.burgerOpen : ""}`}
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
+          aria-expanded={open}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </nav>
-      
-    )
+
+      {/* Overlay mobile */}
+      <div
+        className={`${styles.mobileOverlay} ${open ? styles.mobileOverlayOpen : ""}`}
+        onClick={() => setOpen(false)}
+      />
+
+      {/* Drawer mobile */}
+      <div className={`${styles.mobileDrawer} ${open ? styles.mobileDrawerOpen : ""}`}>
+        <ul>
+          {NAV_LINKS.map(({ href, label }) => (
+            <li key={href} className={router.pathname === href ? styles.active : ""}>
+              <Link href={href} onClick={() => setOpen(false)}>
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
 }

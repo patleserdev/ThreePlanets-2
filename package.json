@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^10.0.3",
-    "@react-three/fiber": "^9.0.4",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
     "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.5.0",
     "fs": "^0.0.1-security",
@@ -21,7 +21,7 @@
     "react-markdown": "^9.0.3",
     "react-spinners": "^0.15.0",
     "remark-gfm": "^4.0.0",
-    "three": "^0.174.0"
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "@types/node": "^20",

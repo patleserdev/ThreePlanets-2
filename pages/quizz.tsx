@@ -6,89 +6,95 @@ import quizzDatas_normal from "@/datas/quizzDatas_normal.js";
 import quizzDatas_hard from "@/datas/quizzDatas_hard.js";
 import { useEffect, useState } from "react";
 
+const LEVELS = [
+  { id: 1, label: "Facile",   emoji: "🟢" },
+  { id: 2, label: "Moyen",    emoji: "🟡" },
+  { id: 3, label: "Difficile",emoji: "🔴" },
+];
+
 const quizzPage = () => {
   const [quizzControl, setQuizzControl] = useState(0);
   const [level, setLevel] = useState(1);
   const [useThisQuizz, setUseThisQuizz] = useState(quizzDatas_easy);
 
-  const startQuizz = () => {
-    setQuizzControl(1);
-  };
-
+  const startQuizz  = () => setQuizzControl(1);
   const restartQuizz = () => {
     setQuizzControl(0);
-    setTimeout(() => {
-      setQuizzControl(1);
-    }, 1000);
+    setTimeout(() => setQuizzControl(1), 1000);
   };
 
   useEffect(() => {
-    if (level == 1) {
-      setUseThisQuizz(quizzDatas_easy);
-    }
-
-    if (level == 2) {
-      setUseThisQuizz(quizzDatas_normal);
-    }
-
-    if (level == 3) {
-      setUseThisQuizz(quizzDatas_hard);
-    }
-
+    setQuizzControl(0);
+    if (level === 1) setUseThisQuizz(quizzDatas_easy);
+    if (level === 2) setUseThisQuizz(quizzDatas_normal);
+    if (level === 3) setUseThisQuizz(quizzDatas_hard);
   }, [level]);
+
+  const currentLevel = LEVELS.find((l) => l.id === level);
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.overlay}>
+          <div className={styles.inner}>
 
-          <h1>Quizz</h1>
-          <p>Tu connais beaucoup de choses sur notre système solaire ?</p>
+            {/* ── Header ── */}
+            <div className={styles.header}>
+              <span className={styles.badge}>🧠 Défi spatial</span>
+              <h1 className={styles.title}>
+                Le <span className={styles.gradient}>Quizz</span>
+              </h1>
+              <p className={styles.subtitle}>
+                Tu connais vraiment notre système solaire ? Prouve-le.
+              </p>
+            </div>
 
-          <p>C'est ce que l'on va voir, frotte toi au Quizz !!</p>
+            {/* ── Controls ── */}
+            <div className={styles.controls}>
 
-          <div className={styles.controlContainer}>
-          <div className={styles.level}>
-            <button
-              className={level == 1 ? styles.active : styles.inactive}
-              onClick={() => setLevel(1)}
-            >
-              Facile
-            </button>
-            <button
-              className={level == 2 ? styles.active : styles.inactive}
-              onClick={() => setLevel(2)}
-            >
-              Moyen
-            </button>
-            <button
-              className={level == 3 ? styles.active : styles.inactive}
-              onClick={() => setLevel(3)}
-            >
-              Difficile
-            </button>
+              {/* Sélecteur de niveau */}
+              <div className={styles.levelSection}>
+                <span className={styles.controlLabel}>Niveau de difficulté</span>
+                <div className={styles.levelButtons}>
+                  {LEVELS.map(({ id, label, emoji }) => (
+                    <button
+                      key={id}
+                      className={`${styles.levelBtn} ${level === id ? styles.levelBtnActive : ""}`}
+                      onClick={() => setLevel(id)}
+                    >
+                      <span className={styles.levelEmoji}>{emoji}</span>
+                      <span>{label}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Badge niveau actif + CTA */}
+              <div className={styles.ctaSection}>
+                <span className={styles.levelBadge}>
+                  {currentLevel?.emoji} Niveau {currentLevel?.label}
+                </span>
+
+                {quizzControl === 0 ? (
+                  <button className={styles.ctaPrimary} onClick={startQuizz}>
+                    Commencer →
+                  </button>
+                ) : (
+                  <button className={styles.ctaSecondary} onClick={restartQuizz}>
+                    ↺ Recommencer
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* ── Quizz motor ── */}
+            {quizzControl === 1 && (
+              <div className={styles.motorWrapper}>
+                <QuizzMotor  key={level} datas={useThisQuizz} control={quizzControl} />
+              </div>
+            )}
+
           </div>
-
-          <div className={styles.levelDisplay}>
-            Niveau {level == 1 && "Facile"} {level == 2 && "Moyen"} {level == 3 && "Difficule"}
-          </div>
-          
-          <div className={styles.cta}>
-            {quizzControl == 0 && <button className={styles.cta} onClick={() => startQuizz()}>
-              Commencer
-            </button>}
-
-            {quizzControl == 1 && <button className={styles.cta} onClick={() => restartQuizz()}>
-              Recommencer
-            </button>}
-          </div>
-
-        
-          </div>
-
-          {quizzControl == 1 && (
-            <QuizzMotor datas={useThisQuizz} control={quizzControl} />
-          )}
         </div>
       </div>
     </div>

@@ -1,289 +1,276 @@
+/* ─── Container ──────────────────────────────────────────── */
 .container {
-  background-color: rgb(46, 46, 45);
   height: 100vh;
   width: 100%;
-  z-index: 1;
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
-.content
-{
+.content {
   height: 100vh;
   width: 100%;
   background-image: url("/pictures/banner.webp");
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.75) 55%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  display: flex;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+/* ─── Inner ──────────────────────────────────────────────── */
+.inner {
+  padding: 100px 5vw 3rem;
+  width: 100%;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
-
+  gap: 2rem;
 }
 
-.overlay
-{
-  padding-top: 8vh;
-  width: 100%;
-  height: 100vh;
-  background-color: rgb(0, 0, 0,0.5);
+/* ─── Header ─────────────────────────────────────────────── */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.content h1 {
-  padding-top: 1rem;
-  padding-left:2rem;
+/* ─── Badge — identique index ─────────────────────────────── */
+.badge {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f49f16;
+  border: 1px solid rgba(244, 159, 22, 0.4);
+  background: rgba(244, 159, 22, 0.08);
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+/* ─── Titre — identique index ─────────────────────────────── */
+.title {
+  font-family: "Boldonse", sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
   color: #fff;
-  font-size: 300%;
-  font-weight: 700;
-  text-shadow: 5px 5px 20px black;
+  line-height: 1.1;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.8);
+  margin: 0;
 }
 
-
-.content h2 {
-  padding-left:3rem;
-  color: #fff;
-  font-size: 150%;
-  text-shadow: 5px 5px 20px black;
+.gradient {
+  background: linear-gradient(to right, #6fd868, #fccd4d, #f49f16, #f56b1e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.content h3 {
-  padding-left:4rem;
-  color: #fff;
-  font-size: 150%;
-  text-shadow: 5px 5px 20px black;
+.subtitle {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  margin: 0;
 }
 
-.content p {
-  padding-top: 1rem;
-  padding-left:5rem;
-  color: #fff;
-  font-size: 120%;
-  line-height: 1.9;
-  width: 60%;
-  text-shadow: 1px 1px 10px black;
-}
-
-.controlContainer
-{
+/* ─── Controls block ─────────────────────────────────────── */
+.controls {
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
+  gap: 2rem;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.controlLabel {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 0.6rem;
+}
+
+/* ─── Level buttons ──────────────────────────────────────── */
+.levelSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.levelButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.levelBtn {
+  display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap:10
+  gap: 0.4rem;
+  padding: 0.55rem 1.1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.levelDisplay
-{
-color: #fff;
-font-size: 150%;
-padding: 1rem;
-padding-left: 5rem;
+.levelBtn:hover {
+  background: rgba(244, 159, 22, 0.08);
+  border-color: rgba(244, 159, 22, 0.4);
+  color: #fff;
 }
 
-.level {
-  padding-left:5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.levelBtnActive {
+  background: rgba(244, 159, 22, 0.12);
+  border-color: #f49f16;
+  color: #fff;
 }
 
-.level .inactive {
-  margin-left: 1rem;
-  border: 1px solid white;
-  padding: 1rem;
-  transition: 0.5s all;
-  color:white;
+.levelEmoji {
+  font-size: 0.8rem;
 }
 
-.level .inactive:hover {
-  background-color: #fff;
+/* ─── CTA section ────────────────────────────────────────── */
+.ctaSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-left: auto;
+  align-items: flex-end;
+}
+
+.levelBadge {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.05em;
+}
+
+/* ─── CTA buttons — identiques index ─────────────────────── */
+.ctaPrimary {
+  display: inline-block;
+  padding: 0.7rem 1.6rem;
+  background: linear-gradient(135deg, #f49f16, #f56b1e);
   color: #000;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(244, 159, 22, 0.35);
+  white-space: nowrap;
 }
 
-.level .active {
-  border: 1px solid white;
-  margin-left: 1rem;
-  padding: 1rem;
-  transition: 0.5s all;
-  background-color: #fff;
-  color: #000;
-  
+.ctaPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(244, 159, 22, 0.5);
 }
 
-.level .active:hover {
-  border: 1px solid white;
-  color:white;
+.ctaSecondary {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.cta {
-  padding-left:5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.ctaSecondary:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.06);
 }
 
-.cta > button {
-  margin-left: 1rem;
-  border: 1px solid white;
-  padding: 1rem;
-  transition: 0.5s all;
-  color:white;
+/* ─── QuizzMotor wrapper ─────────────────────────────────── */
+.motorWrapper {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.25s ease;
 }
 
-
-
-.cta > button:hover {
-  background-color: #fff;
-  color: #000;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-  @media (max-width: 478px) 
-{
-  
-  
-  
-  .container {
-    background-color: rgb(46, 46, 45);
-    min-height: 210vh;
-    width: 100%;
-    z-index: 1;
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
+/* ─── Responsive tablette ────────────────────────────────── */
+@media (max-width: 768px) {
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.92) 100%
+    );
   }
-  
-  
-  .content
-  {
-    height: 210vh;
-    width: 100%;
-    background-image: url("/pictures/banner.webp");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-repeat: no-repeat;
-    display: flex;
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .ctaSection {
+    align-items: stretch;
+    margin-left: 0;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    text-align: center;
+  }
+}
+
+/* ─── Responsive mobile ──────────────────────────────────── */
+@media (max-width: 478px) {
+  .container,
+  .content {
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .inner {
+    padding: 80px 1.25rem 2rem;
+    gap: 1.25rem;
+  }
+
+  .levelButtons {
     flex-direction: column;
   }
 
-  .overlay
-{
-  padding-top: 15vh;
-  width: 100%;
-  height: 210vh;
-  background-color: rgb(0, 0, 0,0.5);
-}
-
-.content h1 {
-  padding-top: 1rem;
-  padding-left:1rem;
-  font-size: 230%;
-  padding-right: 1rem;
-}
-
-.content h2 {
-  padding-left:1rem;
-  color: #fff;
-  font-size: 140%;
-  padding-right: 1rem;
-}
-
-.content h3 {
-  padding-top: 2rem;
-  padding-left:1rem;
-  font-size: 120%;
-  padding-right: 1rem;
-}
-
-.content p {
-  padding-top: 1rem;
-  padding-left:1rem;
-  padding-right: 1rem;
-  color: #fff;
-  font-size: 120%;
-  line-height: 1.9;
-  width: 100%;
-  text-shadow: 1px 1px 10px black;
-}
-
-.content > ul {
-  padding-top: 2rem;
-  padding-left:1rem;
-  color: #fff;
-  font-size: 120%;
-  line-height: 1.9;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  gap: 10
-}
-
-.content  ul  li 
-{
-font-size: 120%;
-padding-top: 0.5rem;
-padding-left:2rem;
-padding-right: 1rem;
-
-}
-
-
-.cta {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 0rem;
-  margin-left: 0rem;
-  padding:1rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap:20
-}
-
-.cta > button {
-  width: 100%;
-  margin: 0rem;
-  margin-left: 0rem;
-  border: 1px solid white;
-  padding: 1rem;
-  transition: 0.5s all;
-  color:white;
-}
-
-.controlContainer
-{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap:10
-}
-
-.levelDisplay
-{
-color: #fff;
-font-size: 150%;
-padding: 0rem;
-padding-left: 0rem;
-}
-
- 
-.level {
-  padding-left: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-self: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-
-.level .inactive {
-  margin:1rem;
-
-}
-.level .active {
-  margin:1rem; 
-}
-
-
-
+  .levelBtn {
+    width: 100%;
+    justify-content: center;
+  }
 }

@@ -1,49 +1,61 @@
 import styles from "@/styles/index.module.css";
 import Link from "next/link.js";
 
+const FEATURES = [
+  { icon: "🪐", text: "Les secrets de chaque planète et de leurs lunes mystérieuses" },
+  { icon: "☀️", text: "Le rôle du Soleil, cette étoile qui nous donne vie" },
+  { icon: "☄️", text: "Les comètes, astéroïdes et autres curiosités célestes" },
+  { icon: "🚀", text: "Les grandes missions spatiales qui explorent l'inconnu" },
+];
+
 const Home = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-      <div className={styles.overlay}>
-     
-        
-          <h1>Voyage au Cœur du Système Solaire</h1>
-          <h2>Du Soleil à Neptune, une aventure infinie vous attend !</h2>
-          <p>
-            Bienvenue sur <b>Voyage au Cœur du Système Solaire</b>, votre
-            portail vers les merveilles de l’Univers ! Ici, chaque planète
-            raconte une histoire, chaque étoile éclaire notre compréhension du
-            cosmos.
-          </p>
+        <div className={styles.overlay}>
 
-          <p>
-            ✨ Notre mission : rendre l’apprentissage du système solaire
-            fascinant et accessible à tous. À travers des animations
-            interactives, des quiz ludiques et des explications claires, nous
-            vous embarquons dans un voyage éducatif captivant.
-          </p>
+          <div className={styles.inner}>
 
-          <ul>
-            <h3>🔭 Que découvrirez-vous ?</h3>
-            <li>
-              ✔️ Les secrets de chaque planète et de leurs lunes mystérieuses
-            </li>
-            <li>✔️ Le rôle du Soleil, cette étoile qui nous donne vie</li>
-            <li>✔️ Les comètes, astéroïdes et autres curiosités célestes</li>
-            <li>✔️ Les grandes missions spatiales qui explorent l’inconnu</li>
+            {/* Badge */}
+            <span className={styles.badge}>🔭 Exploration spatiale</span>
 
-            <div className={styles.cta}>
-              <Link href="/map" passHref legacyBehavior>
-                <a>Voir la carte du système solaire</a>
+            {/* Titre */}
+            <h1 className={styles.title}>
+              Voyage au Cœur du<br />
+              <span className={styles.gradient}>Système Solaire</span>
+            </h1>
+
+            <p className={styles.subtitle}>
+              Du Soleil à Neptune, une aventure infinie vous attend.
+            </p>
+
+            <p className={styles.intro}>
+              Bienvenue sur votre portail vers les merveilles de l'Univers.
+              Chaque planète raconte une histoire, chaque étoile éclaire notre
+              compréhension du cosmos — à portée de clic.
+            </p>
+
+            {/* Features */}
+            <div className={styles.features}>
+              {FEATURES.map(({ icon, text }) => (
+                <div key={text} className={styles.featureItem}>
+                  <span className={styles.featureIcon}>{icon}</span>
+                  <span>{text}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className={styles.ctaGroup}>
+              <Link href="/map" className={styles.ctaPrimary}>
+                Explorer la carte
+              </Link>
+              <Link href="/planets" className={styles.ctaSecondary}>
+                Les planètes →
               </Link>
             </div>
-          </ul>
-          <p>
-            Que vous soyez passionné d’astronomie, élève curieux ou simple
-            rêveur des étoiles, embarquez avec nous et explorez l’Univers à
-            portée de clic ! 🌠
-          </p>
+
+          </div>
         </div>
       </div>
     </div>

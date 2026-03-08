@@ -1,196 +1,202 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import styles from "@/styles/quizzMotor.module.css";
 import CircleLoader from "react-spinners/ClipLoader";
 
-// Fonction pour comparer les réponses de l'utilisateur avec les réponses correctes
 function compareAnswers(userResponses, datas) {
-  let results = [];
   let correctCount = 0;
-
-  userResponses.forEach((response, index) => {
-    const correctAnswer = datas[index].answer;
-    const isCorrect = response === correctAnswer;
-    results.push(isCorrect);
+  const results = datas.map((data, i) => {
+    const isCorrect = userResponses[i] === data.answer;
     if (isCorrect) correctCount++;
+    return isCorrect;
   });
-
-  return {
-    results, // Tableau des réponses correctes (true/false)
-    correctCount, // Nombre total de réponses correctes
-  };
+  return { results, correctCount };
 }
 
 export default function QuizzMotor({ datas, control }) {
-  const [step, setStep] = useState(0);
-  const [question, setQuestion] = useState(0);
+  const [step, setStep]               = useState(0);
+  const [question, setQuestion]       = useState(0);
   const [userResponses, setUserResponses] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState(null);
-  const [note, setNote] = useState(0);
-  //système de step
-  //start
-  //a chaque question, je valide une réponse, elle s'ajoute a stateresponses,
-  //je passe au step suivant tant qu'il y en a dans le tableau de datas
-  // quand le dernier step est passé, je contrôle l'état du stateresponses et le compare au tableau de données
-  // je retourne le résultat sur 20 et ajoute un commentaire suivant la note
-  //start = step 1
-  // questions // step 2
-  // last question finish // step3
+  const [loading, setLoading]         = useState(false);
+  const [results, setResults]         = useState(null);
+  const [note, setNote]               = useState(0);
+  // ✅ state pour le rendu visuel + ref pour la valeur à soumettre
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const selectedRef = useRef(null);
 
-  /** Gère les comportements au changement de control */
-  useEffect(() => {
-    if (control == 0) {
-      restartQuizz();
-    }
-
-    if (control == 1) {
-      setTimeout(() => {
-        setStep(1);
-      }, 0);
-
-      setTimeout(() => {
-        setStep(2);
-      }, 5000);
-    }
-  }, [control]);
-
-  const restartQuizz = () => {
+  // ── Reset ──────────────────────────────────────────────────
+  const restartQuizz = useCallback(() => {
     setStep(0);
     setUserResponses([]);
     setQuestion(0);
     setLoading(false);
     setResults(null);
     setNote(0);
-  };
+    selectedRef.current = null;
+    setSelectedIndex(null);
+  }, []);
 
-  /** Gère les comportements à chaque changement d'étape */
+  // ── Réaction au control ────────────────────────────────────
   useEffect(() => {
-    if (step == 2) {
-      setQuestion(1);
-    }
+    if (control === 0) { restartQuizz(); return; }
 
-    if (step == 3) {
+    if (control === 1) {
+      setStep(1);
+      const t = setTimeout(() => setStep(2), 3000);
+      return () => clearTimeout(t);
+    }
+  }, [control, restartQuizz]);
+
+  // ── Réaction au step ───────────────────────────────────────
+  useEffect(() => {
+    if (step === 2) { setQuestion(1); return; }
+
+    if (step === 3) {
       setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setStep(4);
-      }, 2000);
+      const t = setTimeout(() => { setLoading(false); setStep(4); }, 1500);
+      return () => clearTimeout(t);
     }
 
-    // calcul du nombre de bonnes réponses par rapport au tableaux de données
-    //comparer userResponses a datas[X].response
-    //result = nb de bonnes réponses /nb de questions
     if (step === 4) {
       const comparison = compareAnswers(userResponses, datas);
-      console.log(comparison);
-      if (comparison) {
-        setResults(comparison.results);
-        setNote(comparison.correctCount);
-      }
+      setResults(comparison.results);
+      setNote(comparison.correctCount);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
-  /**
-   * Gère le stockage des réponses
-   */
-  const nextQuestion = () => {
-    const selectedOption = document.querySelector(
-      `input[name="question${question}"]:checked`
-    );
-    if (selectedOption) {
-      // Mettre à jour le tableau des réponses de l'utilisateur
-      setUserResponses([...userResponses, Number(selectedOption.value)]);
-
-      // Passer à la question suivante
-      setQuestion(question + 1);
-      // Désélectionner l'option choisie
-      selectedOption.checked = false;
-    } else {
-      alert("Veuillez sélectionner une réponse avant de continuer !");
-    }
-  };
-
-  console.log(userResponses);
-  console.log(results);
-  // gère la fin des questions
+  // ── Fin des questions ──────────────────────────────────────
   useEffect(() => {
-    if (question == datas.length + 1) {
-      setStep(3);
+    if (question > 0 && question === datas.length + 1) setStep(3);
+  }, [question, datas.length]);
+
+  // ── Passage à la question suivante ─────────────────────────
+  // ✅ utilise selectedRef au lieu de querySelector
+  const nextQuestion = useCallback(() => {
+    if (selectedRef.current === null) {
+      alert("Veuillez sélectionner une réponse avant de continuer !");
+      return;
     }
-  }, [question]);
+    setUserResponses((prev) => [...prev, selectedRef.current]);
+    setQuestion((prev) => prev + 1);
+    selectedRef.current = null;
+    setSelectedIndex(null);
+  }, []);
+
+  const currentQuestion = datas[question - 1];
+  const scorePercent = datas.length > 0 ? Math.round((note / datas.length) * 100) : 0;
+
+  const scoreComment = () => {
+    if (scorePercent === 100) return "🏆 Parfait ! Tu es un expert du système solaire !";
+    if (scorePercent >= 70)  return "🌟 Excellent ! Tu connais très bien le cosmos.";
+    if (scorePercent >= 40)  return "🚀 Pas mal ! Encore un peu d'exploration et tu y seras.";
+    return "☄️ Continue d'explorer, l'univers n'a pas fini de te surprendre !";
+  };
 
   return (
     <div className={styles.QuizzMotor}>
-      {step == 1 && (
-        <>
-          <h1>Le quizz commence !</h1>
-          <p>Il y a {datas.length} questions ! C'est parti !</p>
-        </>
+
+      {/* ── Step 1 : intro ── */}
+      {step === 1 && (
+        <div className={styles.intro}>
+          <h2 className={styles.introTitle}>Le quizz commence !</h2>
+          <p className={styles.introSub}>
+            {datas.length} question{datas.length > 1 ? "s" : ""} t'attendent — bonne chance 🚀
+          </p>
+        </div>
       )}
 
-      {step == 2 && question && (
+      {/* ── Step 2 : question ── */}
+      {step === 2 && currentQuestion && (
         <>
-          <h2>Question {question}</h2>
-          <h3>{datas[question - 1]?.question}</h3>
-          <div className={styles.QuizzMotorQuestion}>
-            {/* Question image */}
-            {datas[question - 1]?.type === "image" && (
-              <div>
-                <img
-                  src={datas[question - 1]?.image}
-                  alt="Illustration de la question"
-                  style={{
-                    maxWidth: "400px",
-                    borderRadius: "8px",
-                    margin: "auto",
-                  }}
-                />
-              </div>
-            )}
-
-            {datas[question - 1]?.choices?.map((choice, key) => {
-              return (
-                <div key={key}>
-                  <input
-                    type="radio"
-                    id={`q${question}-option${key}`}
-                    name={`question${question}`}
-                    value={key}
-                  />
-                  <label htmlFor={key}>{choice}</label>
-                  <br></br>
-                </div>
-              );
-            })}
+          {/* Barre de progression */}
+          <div className={styles.progressBar}>
+            <div
+              className={styles.progressFill}
+              style={{ width: `${((question - 1) / datas.length) * 100}%` }}
+            />
           </div>
 
-          <button onClick={() => nextQuestion()} className={styles.button}>
-            Question suivante
+          <div className={styles.questionHeader}>
+            <span className={styles.questionCount}>
+              {question} / {datas.length}
+            </span>
+            <h2 className={styles.questionTitle}>{currentQuestion.question}</h2>
+          </div>
+
+          {/* Image optionnelle */}
+          {currentQuestion.type === "image" && currentQuestion.image && (
+            <div className={styles.imageWrapper}>
+              <img
+                src={currentQuestion.image}
+                alt="Illustration de la question"
+                className={styles.questionImage}
+              />
+            </div>
+          )}
+
+          {/* Choix */}
+          <div className={styles.choices}>
+            {currentQuestion.choices?.map((choice, key) => (
+              <label
+                key={key}
+                className={`${styles.choiceLabel} ${selectedIndex === key ? styles.choiceSelected : ""}`}
+                onClick={() => { selectedRef.current = key; setSelectedIndex(key); }}
+              >
+                <input
+                  type="radio"
+                  name={`question${question}`}
+                  value={key}
+                  className={styles.radio}
+                  onChange={() => { selectedRef.current = key; setSelectedIndex(key); }}
+                />
+                <span className={styles.choiceLetter}>
+                  {String.fromCharCode(65 + key)}
+                </span>
+                <span className={styles.choiceText}>{choice}</span>
+              </label>
+            ))}
+          </div>
+
+          <button onClick={nextQuestion} className={styles.nextBtn}>
+            {question === datas.length ? "Terminer →" : "Question suivante →"}
           </button>
         </>
       )}
 
-      {step == 3 && <h3>Nous allons maintenant analyser tes réponses </h3>}
+      {/* ── Step 3 : analyse ── */}
+      {step === 3 && (
+        <div className={styles.analyzing}>
+          <h3 className={styles.analyzingText}>Analyse de tes réponses en cours…</h3>
+        </div>
+      )}
 
-      {step == 4 && (
-        <>
-          <h3>
-            Ton résultat : {note}/ {datas.length}
-          </h3>
-          <ul>
+      {/* ── Step 4 : résultats ── */}
+      {step === 4 && results && (
+        <div className={styles.results}>
+          <div className={styles.scoreBlock}>
+            <span className={styles.scoreNumber}>{note}</span>
+            <span className={styles.scoreDivider}>/</span>
+            <span className={styles.scoreTotal}>{datas.length}</span>
+          </div>
+          <p className={styles.scoreComment}>{scoreComment()}</p>
+
+          <ul className={styles.resultList}>
             {datas.map((data, key) => (
-              <li key={key}>
-                <div>Question {key + 1}</div>{" "}
-                <div>{data.answer == userResponses[key] ? "✅" : "❌"}</div>
+              <li key={key} className={`${styles.resultItem} ${results[key] ? styles.resultCorrect : styles.resultWrong}`}>
+                <span className={styles.resultIcon}>{results[key] ? "✅" : "❌"}</span>
+                <span className={styles.resultQuestion}>
+                  Q{key + 1} — {data.question}
+                </span>
               </li>
             ))}
           </ul>
-        </>
+        </div>
       )}
 
+      {/* ── Loader ── */}
       {loading && (
         <div className={styles.loader}>
-          <CircleLoader size={25} color={"#ffffff"} speedMultiplier={1} />
+          <CircleLoader size={25} color="#f49f16" speedMultiplier={1} />
         </div>
       )}
     </div>
