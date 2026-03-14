@@ -1,69 +1,105 @@
-import { Html, Plane } from '@react-three/drei';
-import { useThree, useFrame } from '@react-three/fiber';
-import { useRef, useState, useEffect } from 'react';
-import * as THREE from 'three';
+import { useEffect, useRef, useState } from "react";
 
-export default function Minimap() {
-  const { scene, camera, gl } = useThree();
-  const minimapCamera = useRef();
-  const [minimapTexture, setMinimapTexture] = useState(null);
+export default function Minimap({ planets, positionsRef, focus }) {
+  const canvasRef = useRef();
+  const [zoom, setZoom] = useState(1);
 
   useEffect(() => {
-    // Créer le renderTarget pour la minimap
-    const renderTarget = new THREE.WebGLRenderTarget(512, 512);
-    setMinimapTexture(renderTarget.texture);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    // Initialiser la caméra minimap
-    if (minimapCamera.current) {
-      minimapCamera.current.position.set(0, 100, 0);
-      minimapCamera.current.lookAt(0, 0, 0);
-      minimapCamera.current.rotation.x = -Math.PI / 2; // Vue du dessus
-    }
+    // zoom avec la molette
+    const handleWheel = (e) => {
+      e.preventDefault(); // fonctionne maintenant car passive: false
+      setZoom((z) => {
+        const newZoom = z + (e.deltaY > 0 ? -0.1 : 0.1);
+        return Math.max(0.1, Math.min(10, newZoom));
+      });
+    };
+
+    canvas.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      canvas.removeEventListener("wheel", handleWheel);
+    };
   }, []);
 
-  useFrame(() => {
-    if (minimapCamera.current && minimapTexture) {
-      // Capturer la scène dans le renderTarget
-      gl.setRenderTarget(minimapTexture);
-      gl.render(scene, minimapCamera.current); // Rendu dans la texture
-      gl.setRenderTarget(null); // Réinitialiser après le rendu
-    }
-  });
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
 
-  // Affichage de la minimap sur un Plane dans la scène
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+
+      const baseScale = 0.05;
+      const scale = baseScale * zoom;
+
+      // soleil
+      ctx.fillStyle = "yellow";
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      planets.forEach((planet) => {
+        const pos = positionsRef.current[planet.name];
+        if (!pos) return;
+
+        const x = centerX + pos.x * scale;
+        const y = centerY + pos.z * scale;
+
+        ctx.fillStyle = focus === planet.name ? "orange" : "white";
+
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    };
+
+    draw();
+  }, [planets, focus, zoom]);
+
   return (
-    <>
-      {/* La minimap est rendue dans la scène 3D */}
-      <Plane position={[0, 100, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={[3, 3, 1]}>
-        <meshBasicMaterial map={minimapTexture} />
-      </Plane>
+    <div
+      style={{
+        zIndex: 100,
+        position: "absolute",
+        top: '5rem',
+        right: '1rem',
+        width: 200,
+        textAlign: "center",
+        fontFamily: "monospace",
+        color: "white",
+      }}
+    >
+      <canvas
+        ref={canvasRef}
+        width={200}
+        height={200}
+        style={{
+          background: "rgba(0,0,0,0.7)",
+          border: "1px solid white",
+          borderRadius: "8px",
+          cursor: "zoom-in",
+        }}
+      />
 
-      {/* Affichage en HTML */}
-      <Html>
-        <div
-          style={{
-            position: 'absolute',
-            top: 20,
-            right: 20,
-            width: '150px',
-            height: '150px',
-            border: '2px solid white',
-            backgroundColor: 'black',
-            borderRadius: '10px',
-            zIndex: 1000,
-          }}
-        >
-          <img
-            src={minimapTexture ? minimapTexture.image.src : ''}
-            alt="minimap"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain', // Ajuster l'image pour qu'elle occupe tout le div sans déformation
-            }}
-          />
-        </div>
-      </Html>
-    </>
+      {/* planète hover */}
+      <div
+        style={{
+          marginTop: 6,
+          padding: "4px",
+          background: "rgba(0,0,0,0.6)",
+          borderRadius: "4px",
+          fontSize: "12px",
+        }}
+      >
+        {focus ? `🪐 ${focus}` : "—"}
+      </div>
+    </div>
   );
 }

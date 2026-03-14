@@ -22,6 +22,7 @@ import SpaceIcon from "@/components/SpaceIcon";
 import HighlightPlanet from "./HighlightPlanet.js";
 import Navbar from "./Navbar.js";
 import Orbit from "./Orbit";
+import Minimap from "./Minimap.js";
 
 export default function SolarSystem() {
   const [selectedPlanet, setSelectedPlanet] = useState(null);
@@ -43,7 +44,7 @@ export default function SolarSystem() {
   const controlsRef = useRef();
   const clockRef = useRef(new Clock());
   const clock = clockRef.current;
-
+  const planetPositionsRef = useRef({});
   // ✅ Donnée dérivée mémorisée — recalculée uniquement si selectedPlanet change
   const selectedPlanetData = useMemo(
     () => planets.find((p) => p.name === selectedPlanet),
@@ -57,9 +58,13 @@ export default function SolarSystem() {
 
   // ✅ useCallback stable — lit focusRef pour éviter la dépendance sur focus
   // Écrit dans un ref → zéro re-render React à chaque frame
+
+
   const handlePlanetPosition = useCallback((planetName, position) => {
+    planetPositionsRef.current[planetName] = position.clone();
+  
     if (focusRef.current === planetName) {
-      hoveredPlanetPositionRef.current = position.clone(); // ✅ déjà présent, bon
+      hoveredPlanetPositionRef.current = position.clone();
     }
   }, []);
 
@@ -155,9 +160,15 @@ export default function SolarSystem() {
         <PlanetFocus setFocus={setFocus} setSelectedPlanet={handleSelectPlanet} />
       </div>
 
+      <Minimap
+  planets={planets}
+  positionsRef={planetPositionsRef}
+  focus={focus}
+/>
+
       {!selectedPlanet && (
         <Canvas
-          camera={{ position: [0, 50, 200], fov: 50, near: 1, far: 10000 }}
+          camera={{ position: [0, 50, 200], fov: 50, near: 1, far: 1000000  }}
           onPointerMissed={handlePointerMissed}
         >
           <Suspense fallback={null}>

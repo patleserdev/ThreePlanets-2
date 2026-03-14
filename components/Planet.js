@@ -47,16 +47,15 @@ export default function Planet({
   elapsedTimeAtPause,
   getplanetPosition,
 }) {
+  const orbitRef = useRef();      // Groupe orbital → mouvement autour du Soleil
+  const meshGroupRef = useRef();  // Groupe interne → inclinaison de la planète
   const meshRef  = useRef();
-  const groupRef = useRef();
   const worldPosRef = useRef(new THREE.Vector3());
-
   const [hovered, setHovered] = useState(false);
 
   const planetTexture = useLoader(TextureLoader, texture);
   const ringsTexture  = useLoader(TextureLoader, RINGS_TEXTURE_PATH);
 
-  // ✅ inclinaison en radians — utilisée pour le plan orbital ET le visuel
   const inclinationRad = useMemo(
     () => THREE.MathUtils.degToRad(inclination),
     [inclination]
@@ -66,52 +65,55 @@ export default function Planet({
     () => THREE.MathUtils.degToRad(rotation) * 0.01,
     [rotation]
   );
+
   const configuredRingsTexture = useMemo(() => {
     if (!hasRings) return null;
     const t = ringsTexture.clone();
-    t.wrapS = THREE.ClampToEdgeWrapping; // ✅ comme PlanetViewer
+    t.wrapS = THREE.ClampToEdgeWrapping;
     t.wrapT = THREE.ClampToEdgeWrapping;
     t.needsUpdate = true;
     return t;
   }, [hasRings, ringsTexture]);
 
-  
-  // Dans le composant, avec les autres useMemo :
-const ringGeometries = useMemo(() => {
-  if (!hasRings) return [];
-  return RING_LAYERS.map(([inner, outer]) =>
-    buildRingGeometry(size * inner, size * outer)
-  );
-}, [hasRings, size]);
+  const ringGeometries = useMemo(() => {
+    if (!hasRings) return [];
+    return RING_LAYERS.map(([inner, outer]) =>
+      buildRingGeometry(size * inner, size * outer)
+    );
+  }, [hasRings, size]);
 
   useFrame(() => {
-    if (!groupRef.current) return;
+    if (!orbitRef.current) return;
 
-    if (!isPaused) {
-      const elapsedTime = clock.getElapsedTime() - elapsedTimeAtPause;
+    const elapsedTime = isPaused ? elapsedTimeAtPause : clock.getElapsedTime() - elapsedTimeAtPause;
 
-      // ✅ Orbite dans le plan XZ — l'inclinaison du GROUP parent la fait tourner
-      // dans le même plan incliné que l'orbite affichée
-      groupRef.current.position.x = position[0] * Math.cos(elapsedTime * speed);
-      groupRef.current.position.z = position[0] * Math.sin(elapsedTime * speed);
+    // ----------------------------
+    // Orbite autour du Soleil (même sens pour toutes les planètes)
+    // ----------------------------
+    orbitRef.current.position.x = position[0] * Math.cos(elapsedTime * speed);
+    orbitRef.current.position.z = position[0] * Math.sin(elapsedTime * speed);
 
-      if (meshRef.current) {
-        meshRef.current.rotation.y += rotationSpeed;
-      }
+    // ----------------------------
+    // Rotation de la planète sur elle-même
+    // ----------------------------
+    if (meshRef.current) {
+      meshRef.current.rotation.y += rotationSpeed;
     }
 
-
-
+    // ----------------------------
+    // Position globale pour Minimap ou highlight
+    // ----------------------------
     if (getplanetPosition) {
-      groupRef.current.getWorldPosition(worldPosRef.current);
+      orbitRef.current.getWorldPosition(worldPosRef.current);
       getplanetPosition(name, worldPosRef.current);
     }
   });
 
   return (
-    // ✅ Le group orbital est incliné → la planète tourne dans le même plan que son orbite
-    <group rotation={[inclinationRad, 0, 0]}>
-      <group ref={groupRef}>
+    // Groupe orbital sans inclinaison
+    <group ref={orbitRef}>
+      {/* Groupe interne pour inclinaison de la planète */}
+      <group ref={meshGroupRef} rotation={[inclinationRad, 0, 0]}>
         <mesh
           ref={meshRef}
           name={name}
@@ -143,24 +145,25 @@ const ringGeometries = useMemo(() => {
           )}
         </mesh>
 
-        {/* Anneaux dans le même group que la planète → suivent sa position */}
+        {/* Anneaux */}
         {hasRings && configuredRingsTexture && RING_LAYERS.map(([inner, outer, opacity], i) => (
-  <mesh
-    key={i}
-    geometry={ringGeometries[i]}
-    rotation={[Math.PI / 2 - inclinationRad, 0, 0]}
-  >
-    <meshBasicMaterial  // ✅ meshBasicMaterial comme PlanetViewer, pas meshStandardMaterial
-      map={configuredRingsTexture}
-      side={THREE.DoubleSide}
-      transparent
-      alphaTest={0.001}
-      depthWrite={false}
-      opacity={opacity}
-    />
-  </mesh>
-))}
+          <mesh
+            key={i}
+            geometry={ringGeometries[i]}
+            rotation={[Math.PI / 2 - inclinationRad, 0, 0]}
+          >
+            <meshBasicMaterial
+              map={configuredRingsTexture}
+              side={THREE.DoubleSide}
+              transparent
+              alphaTest={0.001}
+              depthWrite={false}
+              opacity={opacity}
+            />
+          </mesh>
+        ))}
 
+        {/* Satellites */}
         {satellites.map((sat) => (
           <Satellite key={sat.texture ?? sat.distance} parentRef={meshRef} {...sat} />
         ))}
