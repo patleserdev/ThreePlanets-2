@@ -1,6 +1,6 @@
 /* ─── Container ──────────────────────────────────────────── */
 .container {
-  height: 95vh;
+  min-height: 100svh;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -9,7 +9,8 @@
 }
 
 .content {
-  height: 100vh;
+  min-height: 100svh;
+  padding-top: 64px;
   width: 100%;
   background-image: url("/pictures/banner.webp");
   background-size: cover;
@@ -19,7 +20,8 @@
 
 .overlay {
   width: 100%;
-  height: 100%;
+  min-height: 100svh; /* ✅ au lieu de height */
+
   /* Dégradé directionnel : opaque à gauche, transparent à droite */
   background: linear-gradient(
     105deg,
@@ -34,7 +36,7 @@
 /* ─── Contenu centré ─────────────────────────────────────── */
 .inner {
   padding: 0 5vw;
-  padding-top: 80px; /* hauteur navbar */
+
   max-width: 680px;
   display: flex;
   flex-direction: column;
@@ -163,6 +165,13 @@
 
 /* ─── Responsive tablette ────────────────────────────────── */
 @media (max-width: 768px) {
+
+  .container,
+  .content {
+    min-height: 100svh; /* ✅ au lieu de height */
+    overflow: hidden;
+  }
+
   .overlay {
     background: linear-gradient(
       180deg,
@@ -174,18 +183,21 @@
   }
 
   .inner {
-    padding: 2rem 1.5rem;
-    padding-bottom: 3rem;
+    padding: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem; /* ✅ important */
     max-width: 100%;
-    gap: 1.1rem;
+    gap:10px;
   }
 }
 
 /* ─── Responsive mobile ──────────────────────────────────── */
 @media (max-width: 478px) {
+
   .container,
   .content {
-    height: 100svh; /* safe area sur iOS */
+    min-height: 100svh; /* ✅ au lieu de height */
     overflow: hidden;
   }
 

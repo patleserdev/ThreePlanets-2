@@ -1,15 +1,18 @@
 /* ─── Container ──────────────────────────────────────────── */
 .container {
-  height: 95vh;
+  min-height: 100svh;
+  overflow: visible; /* important */
+
   width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
+
 }
 
 .content {
-  height: 100vh;
+  min-height: 100svh;
+
   width: 100%;
   background-image: url("/pictures/banner.webp");
   background-size: cover;
